@@ -1,13 +1,13 @@
 Package: LCTMC.simulate
-Title: Simulates Data From a Latent Class Continuous-Time Markov Chain
-Date: 2022.10.06
-Version: 1.1.0
-Authors@R: 
-    person("Jacky", "Kuo", , "jacky.kuo@uth.tmc.edu", role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0002-6825-9938"))
-Description: This package simulates a data from a latent class CTMC model. Either the general 2x2 case or a special 3x3 case.
+Title: Simulates Data From a Latent Class Continuous-Time Markov Chain Model
+Date: 2022.10.07
+Version: 1.1.1
+Authors@R: c(
+    person("Jacky", "Kuo", email = "jacky.kuo@uth.tmc.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6825-9938")),
+    person("Wenyaw", "Chan", email = "", role = c("ths"), comment = ""))
+Description: This package simulates a data from a latent class CTMC model.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
-Imports: dplyr, tibble, purrr, tidyr
+Imports: tibble, purrr, tidyr

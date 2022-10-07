@@ -115,7 +115,7 @@ plot_transitions = function(df, id){
   graphics::plot.new()
   graphics::legend("left", inset = c(0.33, 0),
                    lty = c(1, 3), lwd = c(2, 2), col = c('black', "#2C7DB5"),
-                   legend = c("Actual disease dynamic over time", "Incorrect disease dynamic over time"),
+                   legend = c("The Actual Disease Dynamic", "The Incorrect Disease Dynamic"),
                    bty = "n",
                    ncol = 1,
                    pt.cex = 1, cex = 1.4)

@@ -39,8 +39,6 @@
 #' The second item returns by this function is, `true_param`, a list object containing the true model parameter values used to simulate the data.
 #' Note that this may not be equivalent to the input argument `true_param` depending on whether `alpha.include` and `beta.include` are set to TRUE or FALSE.
 #'
-#' @importFrom dplyr case_when
-#'
 #' @export
 #'
 #' @note Once simulation is complete, use `convert_sim_data_2df(...)` to format the data into a "data.frame" object.
@@ -129,7 +127,7 @@ simulate_LCTMC = function(
   df_person$p1 = p1
   df_person$p2 = p1+p2
   df_person$p3 = 1
-  df_person$z = dplyr::case_when(r < df_person$p1 ~ 1, r < df_person$p2 ~ 2, TRUE ~ 3)
+  df_person$z = ifelse(r < df_person$p1, 1, ifelse(r < df_person$p2, 2, 3)) # this nested `ifelse()` creates the latent class assignment
   ## generate each person's initial state
   initS = sample(1:M, size = N.indiv, prob = initS_p, replace = TRUE)
   ## if `death` is NULL, turn it into -99, so it will never be reached

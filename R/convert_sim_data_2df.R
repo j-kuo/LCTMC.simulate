@@ -15,7 +15,6 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr imap_dfr
 #' @importFrom tidyr unnest
-#' @importFrom dplyr select
 #'
 #' @export
 #'
@@ -77,8 +76,8 @@ convert_sim_data_2df = function(my_list, type){
     }
 
     df = purrr::imap_dfr(.x = my_list, .f = tidy)
-    df1 = dplyr::select(df, cols = -Exact)
-    df2 = dplyr::select(df, cols = -Obs)
+    df1 = df[, !(names(df) %in% "Exact")]
+    df2 = df[, !(names(df) %in% "Obs")]
     df = list(
       obs = tidyr::unnest(data = df1, cols = "Obs"),
       exact = tidyr::unnest(data = df2, cols = "Exact")
