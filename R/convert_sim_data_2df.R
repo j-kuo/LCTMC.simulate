@@ -12,10 +12,6 @@
 #' }
 #' If `type` is equal to either "obs" or "exact" then a data.frame object is returned. The data frames corresponds to the either censored data or exactly-observed data
 #'
-#' @importFrom tibble tibble
-#' @importFrom purrr imap_dfr
-#' @importFrom tidyr unnest
-#'
 #' @export
 #'
 #' @example inst/examples/ex_convert_sim_data_2df.R
@@ -24,65 +20,54 @@ convert_sim_data_2df = function(my_list, type){
   if(!any(c("obs", "exact", "both") %in% tolower(type))) stop("`type` must be either 'obs' or 'exact'")
   if(length(type) != 1) stop("`type` must be of length 1")
 
-  # place holder
-  Obs = Exact = NULL
+  tidy.obs = function(i){
+    data.frame(id = NA,
+               obsTime = i$obsTime, state_at_obsTime = i$state_at_obsTime,
+               x1 = i$xi[1], x2 = i$xi[2],
+               w1 = i$wi[1], w2 = i$wi[2],
+               latent_class = i$zi)
+  }
+  tidy.exact = function(i){
+    data.frame(id = NA,
+               transTime = i$transTime, state_at_transTime = i$state_at_transTime,
+               x1 = i$xi[1], x2 = i$xi[2],
+               w1 = i$wi[1], w2 = i$wi[2],latent_class = i$zi)
+  }
 
-  # if extract only the observed data
+  ## if only get observed data
   if(tolower(type) == 'obs'){
-    # a function specifically for `imap_dfr()`
-    tidy = function(l, idx){
-      tibble::tibble(
-        id = idx,
-        Obs = list(tibble::tibble(obsTime = l$obsTime, state_at_obsTime = l$state_at_obsTime,
-                                  x1 = l$xi[1], x2 = l$xi[2],
-                                  w1 = l$wi[1], w2 = l$wi[2])),
-        latent_class = l$zi
-      )
-    }
+    df.obs = Map(f = tidy.obs, my_list)
+    n_each.obs = sapply(df.obs, function(x) nrow(x))
+    df.obs = Reduce(`rbind`, df.obs)
+    df.obs$id = rep(names(n_each.obs), times = as.numeric(n_each.obs))
 
-    df = purrr::imap_dfr(.x = my_list, .f = tidy)
-    df = tidyr::unnest(data = df, cols = "Obs")
+    return(df.obs)
   }
 
-  # if extract only the exact transition data
+  ## if only get exact data
   if(tolower(type) == 'exact'){
-    tidy = function(l, idx){
-      tibble::tibble(
-        id = idx,
-        Exact = list(tibble::tibble(transTime = l$transTime, state_at_transTime = l$state_at_transTime,
-                                    x1 = l$xi[1], x2 = l$xi[2],
-                                    w1 = l$wi[1], w2 = l$wi[2])),
-        latent_class = l$zi
-      )
-    }
+    df.exact = Map(f = tidy.exact, my_list)
+    n_each.exact = sapply(df.exact, function(x) nrow(x))
+    df.exact = Reduce(`rbind`, df.exact)
+    df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
 
-    df = purrr::imap_dfr(.x = my_list, .f = tidy)
-    df = tidyr::unnest(data = df, cols = "Exact")
+    return(df.exact)
   }
 
-  # if extract both the observed and exact data
+  ## if get both
   if(tolower(type) == 'both'){
-    tidy = function(l, idx){
-      tibble::tibble(
-        id = idx,
-        Obs = list(tibble::tibble(obsTime = l$obsTime, state_at_obsTime = l$state_at_obsTime,
-                                  x1 = l$xi[1], x2 = l$xi[2],
-                                  w1 = l$wi[1], w2 = l$wi[2])),
-        Exact = list(tibble::tibble(transTime = l$transTime, state_at_transTime = l$state_at_transTime,
-                                    x1 = l$xi[1], x2 = l$xi[2],
-                                    w1 = l$wi[1], w2 = l$wi[2])),
-        latent_class = l$zi
-      )
-    }
+    # obs
+    df.obs = Map(f = tidy.obs, my_list)
+    n_each.obs = sapply(df.obs, function(x) nrow(x))
+    df.obs = Reduce(`rbind`, df.obs)
+    df.obs$id = rep(names(n_each.obs), times = as.numeric(n_each.obs))
 
-    df = purrr::imap_dfr(.x = my_list, .f = tidy)
-    df1 = df[, !(names(df) %in% "Exact")]
-    df2 = df[, !(names(df) %in% "Obs")]
-    df = list(
-      obs = tidyr::unnest(data = df1, cols = "Obs"),
-      exact = tidyr::unnest(data = df2, cols = "Exact")
-    )
+    # exact
+    df.exact = Map(f = tidy.exact, my_list)
+    n_each.exact = sapply(df.exact, function(x) nrow(x))
+    df.exact = Reduce(`rbind`, df.exact)
+    df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
+
+    return(list(obs = df.obs, exact = df.exact))
   }
-
-  return(df)
 }

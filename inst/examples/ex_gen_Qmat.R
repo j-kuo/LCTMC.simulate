@@ -14,5 +14,4 @@
     M_state = 3,
     K_class = 3
   )
-
 }

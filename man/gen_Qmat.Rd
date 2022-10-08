@@ -48,6 +48,5 @@ User must specify \code{M} for number of states and \code{K} for number of laten
     M_state = 3,
     K_class = 3
   )
-
 }
 }
