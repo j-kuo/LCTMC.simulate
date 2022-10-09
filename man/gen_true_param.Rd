@@ -39,17 +39,17 @@ For example: \code{beta.Z1 = list(q12 = c(1.32, -0.29), q21 = c(-0.45, 0.65))}}
 \value{
 A nested list object containing three elements: \code{r0}, \code{beta}, and \code{pi}
 \enumerate{
-\item \strong{r0}: a nested list, one element for each 'k' class, containing the \code{r0} component of the formula: \cr
+\item \strong{r0}: a nested list, one element for each \eqn{k} class, containing the \code{r0} component of the formula: \cr
 \deqn{
           q_{rs(k)} = r0_{rs(k)} \cdot exp(\beta_{rs(k)}X)
         }
-\item \strong{beta}: a nested list, one element for each 'k' class, containing the \code{beta} component of the formula: \cr
+\item \strong{beta}: a nested list, one element for each \eqn{k} class, containing the \code{beta} component of the formula: \cr
 \deqn{
           q_{rs(k)} = r0_{rs(k)} \cdot exp(\beta_{rs(k)}X)
-         }
-\item \strong{pi}: a nested list of \code{K_class-1} element because the last class is the referent group. Housing the coefficients of the multinomial logistic model:
+        }
+\item \strong{pi}: a nested list of \eqn{K-1} elements because the last class is the referent group. These parameters are the coefficients of the multinomial logistic model:
 \deqn{
-          log(\frac{\pi_{(k)}}{\pi_K}) = \alpha_{(k)}W
+          log(\frac{\pi_{(k)}}{\pi_{K}}) = \alpha_{(k)}W
         }
 }
 }
