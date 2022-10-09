@@ -1,5 +1,5 @@
 Package: LCTMC.simulate
-Title: Simulates Data From a Latent Class Continuous-Time Markov Chain Model
+Title: Simulates Data from a Latent Class Continuous-Time Markov Chain Model
 Date: 2022.10.08
 Version: 1.1.2
 Authors@R: c(
