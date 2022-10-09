@@ -11,6 +11,8 @@
 #'
 #' @export
 #'
+#' @seealso [simulate_LCTMC()], [convert_sim_data_2df()]
+#'
 #' @example inst/examples/ex_plot_transitions.R
 
 plot_transitions = function(df, id){

@@ -14,6 +14,8 @@
 #'
 #' @export
 #'
+#' @seealso [simulate_LCTMC()]
+#'
 #' @example inst/examples/ex_convert_sim_data_2df.R
 
 convert_sim_data_2df = function(my_list, type){
@@ -31,14 +33,19 @@ convert_sim_data_2df = function(my_list, type){
     data.frame(id = NA,
                transTime = i$transTime, state_at_transTime = i$state_at_transTime,
                x1 = i$xi[1], x2 = i$xi[2],
-               w1 = i$wi[1], w2 = i$wi[2],latent_class = i$zi)
+               w1 = i$wi[1], w2 = i$wi[2],
+               latent_class = i$zi)
   }
 
   ## if only get observed data
   if(tolower(type) == 'obs'){
+    # a list of data frames
     df.obs = Map(f = tidy.obs, my_list)
     n_each.obs = sapply(df.obs, function(x) nrow(x))
-    df.obs = Reduce(`rbind`, df.obs)
+    # `rbind` entire list
+    df.obs = do.call(`rbind`, df.obs)
+    rownames(df.obs) = NULL
+    # add ID column back
     df.obs$id = rep(names(n_each.obs), times = as.numeric(n_each.obs))
 
     return(df.obs)
@@ -46,9 +53,13 @@ convert_sim_data_2df = function(my_list, type){
 
   ## if only get exact data
   if(tolower(type) == 'exact'){
+    # a list of data frames
     df.exact = Map(f = tidy.exact, my_list)
     n_each.exact = sapply(df.exact, function(x) nrow(x))
-    df.exact = Reduce(`rbind`, df.exact)
+    # `rbind` entire list
+    df.exact = do.call(`rbind`, df.exact)
+    rownames(df.exact) = NULL
+    # add ID column back
     df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
 
     return(df.exact)
@@ -56,16 +67,22 @@ convert_sim_data_2df = function(my_list, type){
 
   ## if get both
   if(tolower(type) == 'both'){
-    # obs
+    # obs ~ a list of data frames
     df.obs = Map(f = tidy.obs, my_list)
     n_each.obs = sapply(df.obs, function(x) nrow(x))
-    df.obs = Reduce(`rbind`, df.obs)
+    # obs ~ `rbind` entire list
+    df.obs = do.call(`rbind`, df.obs)
+    rownames(df.obs) = NULL
+    # obs ~ add ID column back
     df.obs$id = rep(names(n_each.obs), times = as.numeric(n_each.obs))
 
-    # exact
+    # exact ~ a list of data frames
     df.exact = Map(f = tidy.exact, my_list)
     n_each.exact = sapply(df.exact, function(x) nrow(x))
-    df.exact = Reduce(`rbind`, df.exact)
+    # exact ~ `rbind` entire list
+    df.exact = do.call(`rbind`, df.exact)
+    rownames(df.exact) = NULL
+    # exact ~ add ID column back
     df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
 
     return(list(obs = df.obs, exact = df.exact))

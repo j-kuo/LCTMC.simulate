@@ -12,6 +12,8 @@
 #'
 #' @note for most use cases, this function will only be used within `simulate_LCTMC(...)`
 #'
+#' @seealso [gen_true_param()], [simulate_LCTMC()]
+#'
 #' @example inst/examples/ex_force0_true_param.R
 
 force0_true_param = function(true_param, alpha.include, beta.include){

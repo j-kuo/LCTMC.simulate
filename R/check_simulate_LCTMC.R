@@ -18,7 +18,7 @@
 #'
 #' @return if checks passes without issue then function returns NULL
 #'
-#' @seealso `simulate_LCTMC()`
+#' @seealso [simulate_LCTMC()]
 
 check_simulate_LCTMC = function(
     N.indiv = integer(),

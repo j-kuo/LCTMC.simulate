@@ -51,3 +51,6 @@ d = LCTMC.simulate::simulate_LCTMC(
 head(LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "obs"))
 head(LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "exact"))
 }
+\seealso{
+\code{\link[=simulate_LCTMC]{simulate_LCTMC()}}
+}

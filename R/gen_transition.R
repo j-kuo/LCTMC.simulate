@@ -14,6 +14,8 @@
 #'   \item **to_state** a numeric scalar. This is the state which the random process transitioned to
 #' }
 #'
+#' @seealso [gen_Qmat()]
+#'
 #' @example inst/examples/ex_gen_transition.R
 
 gen_transition = function(

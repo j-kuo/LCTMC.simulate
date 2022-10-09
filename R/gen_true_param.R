@@ -37,7 +37,6 @@
 #' @note For the beta arguments, each element within the list is a numeric vector of length 2. This is because we allow the simulation to
 #' take up to two covariates for the CTMC model. If these model parameter arguments are set to `NULL` then the function will internally supply some default values.
 #'
-#'
 #' @example inst/examples/ex_gen_true_param.R
 
 gen_true_param = function(

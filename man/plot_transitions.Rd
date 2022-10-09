@@ -50,3 +50,6 @@ my_df = LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "both"
 # plot
 LCTMC.simulate::plot_transitions(df = my_df, id = "EA000")
 }
+\seealso{
+\code{\link[=simulate_LCTMC]{simulate_LCTMC()}}, \code{\link[=convert_sim_data_2df]{convert_sim_data_2df()}}
+}

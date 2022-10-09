@@ -62,3 +62,6 @@ for most use cases, this function will only be used within \code{simulate_LCTMC(
   )
 }
 }
+\seealso{
+\code{\link[=gen_true_param]{gen_true_param()}}, \code{\link[=simulate_LCTMC]{simulate_LCTMC()}}
+}

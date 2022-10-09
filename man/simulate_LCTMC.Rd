@@ -109,3 +109,6 @@ names(d)
 # `sim_data` is the simulated data, here we print the simulation for person #1
 d$sim_data[[1]]
 }
+\seealso{
+\code{\link[=gen_Qmat]{gen_Qmat()}}, \code{\link[=gen_transition]{gen_transition()}}, \code{\link[=gen_true_param]{gen_true_param()}}, \code{\link[=force0_true_param]{force0_true_param()}}
+}

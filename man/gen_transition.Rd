@@ -45,3 +45,6 @@ Generates the process of state transitioning. This is done by following 2 steps:
   gen_transition(from_state = 2, Q = Q, M_state = 3)
 }
 }
+\seealso{
+\code{\link[=gen_Qmat]{gen_Qmat()}}
+}

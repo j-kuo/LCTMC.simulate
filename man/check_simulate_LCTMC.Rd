@@ -54,5 +54,5 @@ if checks passes without issue then function returns NULL
 Takes the exact same arguments as \code{simulate_LCTMC(...)} and checks if there any issues with specifications.
 }
 \seealso{
-\code{simulate_LCTMC()}
+\code{\link[=simulate_LCTMC]{simulate_LCTMC()}}
 }
