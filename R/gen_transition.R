@@ -5,8 +5,8 @@
 #' (2) generate which what state is transitioned to
 #'
 #' @param from_state the current state to transition out of
-#' @param Q transition rate matrix obtained from `gen_Qmat(...)`
-#' @param M_state number of CTMC states (currently only support 2 states or 3 states)
+#' @param Q transition rate matrix obtained from `gen_Qmat()`
+#' @param M_state number of CTMC states (currently only support 2 or 3 states)
 #'
 #' @return a list contaiing two elements
 #' \enumerate{

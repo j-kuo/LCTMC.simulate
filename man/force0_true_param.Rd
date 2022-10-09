@@ -7,11 +7,11 @@
 force0_true_param(true_param, alpha.include, beta.include)
 }
 \arguments{
-\item{true_param}{a list object obtained from \code{gen_true_param(...)}}
+\item{true_param}{a list object obtained from \code{gen_true_param()}}
 
-\item{alpha.include}{a logical scalar. See documentation in \code{simulate_LCTMC(...)}}
+\item{alpha.include}{a logical scalar. See documentation in \code{simulate_LCTMC()}}
 
-\item{beta.include}{a logical scalar. See documentation in \code{simulate_LCTMC(...)}}
+\item{beta.include}{a logical scalar. See documentation in \code{simulate_LCTMC()}}
 }
 \value{
 a list object similar in structure to in the input argument \code{true_param}. \cr
@@ -22,7 +22,7 @@ Forces the some of the model parameters to 0, namely the alpha coefficients and 
 By setting those to zero, we essentially tells program to not include any covariate effects when performing the simulation.
 }
 \note{
-for most use cases, this function will only be used within \code{simulate_LCTMC(...)}
+for most use cases, this function only appear used within \code{simulate_LCTMC()}
 }
 \examples{
 \dontrun{

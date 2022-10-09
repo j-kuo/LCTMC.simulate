@@ -1,6 +1,6 @@
 #' @title Checks `simulate_LCTMC()`
 #'
-#' @description Takes the exact same arguments as `simulate_LCTMC(...)` and checks if there any issues with specifications.
+#' @description Takes the exact same arguments as [simulate_LCTMC()] and checks if there any issues with specifications.
 #'
 #' @param N.indiv See documentation for `simulate_LCTMC()`
 #' @param N.obs_times See documentation for `simulate_LCTMC()`
@@ -41,6 +41,7 @@ check_simulate_LCTMC = function(
   ## check specifications: true_param$r0
   if(length(true_param$r0) != K) stop("`true_param$r0` must have length K, where each element is a list with M*(M-1) elements")
   if(length(unlist(true_param$r0)) != M*(M-1)*K) stop("`true_param$r0` should have a total of M*(M-1)*K parameters")
+
   ## check specifications: true_param$beta
   if(length(true_param$beta) != K) stop("`true_param$beta` must have length K, where each element is a list with M*(M-1)*p1 elements")
   if(length(unlist(true_param$beta)) != M*(M-1)*K*p1) stop("`true_param$beta` should have a total of M*(M-1)*p*K parameters")
@@ -49,15 +50,16 @@ check_simulate_LCTMC = function(
   if(length(initS_p) != M || sum(initS_p) != 1) stop("initS_p must be of length M and must sum to 1")
   if(length(true_param$pi) != (K-1)) stop("`true_param$pi` must be of have `K-1` components")
   if(length(unlist(true_param$pi)) != (p2+1)*(K-1)) stop("Number of alpha parameters do not match with specified `p2`")
+
   ## check specifications: other
   if(!is.logical(fix.obs_times) || length(fix.obs_times) != 1) stop("only supply the `fix.obs_times` parameter with either T/F, and it must be length '1'")
   if(!is.logical(beta.include) || length(beta.include) != 1) stop("only supply the `beta.include` parameter with either T/F, and it must be length '1'")
 
   ## check death state must be between 1 and M, and q_(death)(death) must equal 0
   if(is.null(death)){
-    if(any(sapply(true_param$r0, function(x) any(sapply(0:(M-1), function(i) all(x[i*(M-1) + (1:(M-1))] == 0)))))) stop("when `death` is NULL, there should NOT be any absorbing states (i.e., `r0` should have some > 0 values for all states in 1 to `M`)")
+    if(any(sapply(true_param$r0, function(x) any(sapply(0:(M-1), function(i) all(x[i*(M-1) + (1:(M-1))] == 0)))))) stop("when `death` is NULL, there should NOT be any absorbing states (i.e., `true_param$r0` should have some > 0 values for all states in 1 to `M`)")
   }else{
     if(!(death %in% 1:M)) stop("when `death` is not NULL, it must be an element of c(1, ..., `M`)")
-    if(all(sapply(true_param$r0, function(x) any(x[(M-1)*(death-1) + 1:(M-1)] > 0)))) stop("when `death` is not NULL, `r0` for the `death` state should be all 0's")
+    if(all(sapply(true_param$r0, function(x) any(x[(M-1)*(death-1) + 1:(M-1)] > 0)))) stop("when `death` is not NULL, `true_param$r0` for the `death` state should be all 0's")
   }
 }

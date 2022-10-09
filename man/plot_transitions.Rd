@@ -7,8 +7,7 @@
 plot_transitions(df, id)
 }
 \arguments{
-\item{df}{a list object obtained from \code{convert_sim_data_2df(...)}. This list object should hold two data frame objects \code{obs} and \code{exact}. \cr
-See \code{?convert_sim_data_2df} for more details}
+\item{df}{a list object obtained from \code{convert_sim_data_2df(...)}. This list object should hold two data frame objects \code{obs} and \code{exact}. \cr}
 
 \item{id}{a character scalar to indicate which person (ID number) should be plotted}
 }

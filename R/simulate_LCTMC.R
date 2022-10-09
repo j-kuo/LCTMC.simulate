@@ -41,7 +41,7 @@
 #'
 #' @export
 #'
-#' @note Once simulation is complete, use `convert_sim_data_2df(...)` to format the data into a "data.frame" object.
+#' @note Once simulation is complete, use `convert_sim_data_2df()` to format the data into a "data.frame" object.
 #'
 #' @seealso [gen_Qmat()], [gen_transition()], [gen_true_param()], [force0_true_param()]
 #'

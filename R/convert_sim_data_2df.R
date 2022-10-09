@@ -1,8 +1,8 @@
 #' @title Data tidying for the simulation output
 #'
-#' @description Converts the output of `simulate_LCTMC(...)` to a "data.frame" object
+#' @description Converts the output of [simulate_LCTMC()] to a "data.frame" object
 #'
-#' @param my_list a list object obtained from the `simulate_LCTMC(...)` function
+#' @param my_list a list object obtained from the `simulate_LCTMC()` function
 #' @param type a character scalar of either "obs", "exact", or "both"
 #'
 #' @return if `type = "both"` then a a list object with **2** elements is returned:

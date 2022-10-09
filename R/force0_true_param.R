@@ -3,14 +3,14 @@
 #' @description Forces the some of the model parameters to 0, namely the alpha coefficients and the beta coefficients. \cr
 #' By setting those to zero, we essentially tells program to not include any covariate effects when performing the simulation.
 #'
-#' @param true_param a list object obtained from `gen_true_param(...)`
-#' @param alpha.include a logical scalar. See documentation in `simulate_LCTMC(...)`
-#' @param beta.include a logical scalar. See documentation in `simulate_LCTMC(...)`
+#' @param true_param a list object obtained from `gen_true_param()`
+#' @param alpha.include a logical scalar. See documentation in `simulate_LCTMC()`
+#' @param beta.include a logical scalar. See documentation in `simulate_LCTMC()`
 #'
 #' @return a list object similar in structure to in the input argument `true_param`. \cr
 #' `true_param$pi` and `true_parma$beta` either remain the same or forced to 0 (depending on `alpha.include` and `beta.include`)
 #'
-#' @note for most use cases, this function will only be used within `simulate_LCTMC(...)`
+#' @note for most use cases, this function only appear used within `simulate_LCTMC()`
 #'
 #' @seealso [gen_true_param()], [simulate_LCTMC()]
 #'

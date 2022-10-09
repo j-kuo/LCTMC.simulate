@@ -7,7 +7,7 @@
 convert_sim_data_2df(my_list, type)
 }
 \arguments{
-\item{my_list}{a list object obtained from the \code{simulate_LCTMC(...)} function}
+\item{my_list}{a list object obtained from the \code{simulate_LCTMC()} function}
 
 \item{type}{a character scalar of either "obs", "exact", or "both"}
 }
@@ -20,7 +20,7 @@ if \code{type = "both"} then a a list object with \strong{2} elements is returne
 If \code{type} is equal to either "obs" or "exact" then a data.frame object is returned. The data frames corresponds to the either censored data or exactly-observed data
 }
 \description{
-Converts the output of \code{simulate_LCTMC(...)} to a "data.frame" object
+Converts the output of \code{\link[=simulate_LCTMC]{simulate_LCTMC()}} to a "data.frame" object
 }
 \examples{
 # set seed

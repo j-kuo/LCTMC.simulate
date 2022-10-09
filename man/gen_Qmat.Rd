@@ -2,14 +2,14 @@
 % Please edit documentation in R/gen_Qmat.R
 \name{gen_Qmat}
 \alias{gen_Qmat}
-\title{Transition Rate Matrix \eqn{Q} Generator}
+\title{Computes the Transition Rate Matrix, \eqn{Q}}
 \usage{
 gen_Qmat(r0, beta, x, z, M_state, K_class)
 }
 \arguments{
-\item{r0}{a nested list obtained from \code{gen_true_param(...)}}
+\item{r0}{a nested list obtained from \code{gen_true_param()}}
 
-\item{beta}{a nested list obtained from \code{gen_true_param(...)}}
+\item{beta}{a nested list obtained from \code{gen_true_param()}}
 
 \item{x}{a numeric vector containing the covariates that affect the Q matrix}
 
@@ -49,4 +49,7 @@ User must specify \code{M} for number of states and \code{K} for number of laten
     K_class = 3
   )
 }
+}
+\seealso{
+\code{\link[=gen_true_param]{gen_true_param()}}
 }

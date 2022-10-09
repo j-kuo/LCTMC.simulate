@@ -1,4 +1,4 @@
-#' @title Transition Rate Matrix \eqn{Q} Generator
+#' @title Computes the Transition Rate Matrix, \eqn{Q}
 #'
 #' @description \eqn{Q_{(k)}} is an \eqn{M \times M} matrix containing the transition rates from state \eqn{r} to state \eqn{s}.
 #' Each transition rate has the form
@@ -8,14 +8,16 @@
 #' Therefore, this function takes some given values for `r0`, `beta`, `x`, and latent variable `z` and computes the \eqn{Q} matrix.
 #' User must specify `M` for number of states and `K` for number of latent classes
 #'
-#' @param r0 a nested list obtained from `gen_true_param(...)`
-#' @param beta a nested list obtained from `gen_true_param(...)`
+#' @param r0 a nested list obtained from `gen_true_param()`
+#' @param beta a nested list obtained from `gen_true_param()`
 #' @param x a numeric vector containing the covariates that affect the Q matrix
 #' @param z an integer indicating the latent class to compute the Q matrix for
 #' @param M_state number of CTMC states (currently only support 2 state or 3 state models)
 #' @param K_class number of latent classes (currently only support 3 latent classes)
 #'
 #' @return a matrix object that satisfies the form of a infinitesimal transition rate matrix
+#'
+#' @seealso [gen_true_param()]
 #'
 #' @example inst/examples/ex_gen_Qmat.R
 

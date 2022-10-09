@@ -9,9 +9,9 @@ gen_transition(from_state, Q, M_state)
 \arguments{
 \item{from_state}{the current state to transition out of}
 
-\item{Q}{transition rate matrix obtained from \code{gen_Qmat(...)}}
+\item{Q}{transition rate matrix obtained from \code{gen_Qmat()}}
 
-\item{M_state}{number of CTMC states (currently only support 2 states or 3 states)}
+\item{M_state}{number of CTMC states (currently only support 2 or 3 states)}
 }
 \value{
 a list contaiing two elements

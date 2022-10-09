@@ -75,7 +75,7 @@ Given some underlying parameter values that dictate the latent class assignment 
 simulates a latent CTMC process and outputs the result to a list object.
 }
 \note{
-Once simulation is complete, use \code{convert_sim_data_2df(...)} to format the data into a "data.frame" object.
+Once simulation is complete, use \code{convert_sim_data_2df()} to format the data into a "data.frame" object.
 }
 \examples{
 # set seed

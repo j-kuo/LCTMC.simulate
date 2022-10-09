@@ -8,9 +8,16 @@
 #' @example inst/examples/ex_gen_IDlist.R
 
 gen_IDlist = function(){
-  IDs = expand.grid(apply(expand.grid(LETTERS, LETTERS), 1, FUN = function(x) paste(x, collapse = "")), 0:999)
+  # create first two letters
+  IDs = apply(expand.grid(LETTERS, LETTERS), 1, FUN = function(x) paste(x, collapse = ""))
+
+  # add numbers
+  IDs = expand.grid(IDs, 0:999)
+
+  # pad numbers with leading zeroes if needed
   IDs$Var2 = unname(sapply(IDs$Var2, function(x) paste(c(rep(0, 3-nchar(x)), x), collapse = "")))
   IDs$x = paste(IDs$Var1, IDs$Var2, sep = "")
 
-  return(IDs$x)
+  # return
+  IDs$x
 }

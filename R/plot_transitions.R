@@ -4,7 +4,6 @@
 #' simulates a latent CTMC process and outputs the result to a list object.
 #'
 #' @param df a list object obtained from `convert_sim_data_2df(...)`. This list object should hold two data frame objects `obs` and `exact`. \cr
-#' See `?convert_sim_data_2df` for more details
 #' @param id a character scalar to indicate which person (ID number) should be plotted
 #'
 #' @return This function generates a plot and returns `NULL`
@@ -23,7 +22,8 @@ plot_transitions = function(df, id){
   ## plotting parameters
   xlim1 = 0
   xlim2 = max(c(max(df_obs.sub$obsTime), max(df_exact.sub$transTime)))
-  xlim_by = round((xlim2 - xlim1) / 10)
+  xlim_by = round((xlim2-xlim1)/10, 0)
+  xlim_by = ifelse(xlim_by == 0, 0.5, xlim_by)
 
   ylim1.labs = min(min(df_obs.sub$state_at_obsTime), min(df_exact.sub$state_at_transTime))
   ylim2.labs = max(max(df_obs.sub$state_at_obsTime), max(df_exact.sub$state_at_transTime))
