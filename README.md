@@ -71,7 +71,7 @@ The figure on the left shows the _underlying_ process from time = 0 to 9.5
 
 The red dots on the figure indicate the the times at which data are being collected on this person (e.g., at a doctor's visit). If we do not consider the possibility of interval censoring then the the binary-state process would look like the figure on the right.
 
-In time-to-event analyses, however, making this assumption will likely lead to biased estimates. As the process between observations are not being accounted for.
+In time-to-event analyses, however, making this assumption will likely lead to biased estimates. As the process between observations are not being accounted for. The CTMC model or other Markov-based models handle these unobserved in-between-observation changes by making some assumptions on the sojourn time ([what is sojourn time](https://www.sciencedirect.com/topics/engineering/sojourn-time)).
 
 <br/>
 
