@@ -1,5 +1,9 @@
 # The 'LCTMC.simulate' package
 
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/j-kuo/LCTMC.simulate/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/j-kuo/LCTMC.simulate/actions/workflows/R-CMD-check.yaml)
+  <!-- badges: end -->
+
 This R package provides an intuitive and simple to use interface to simulate data from a **L**atent class **C**ontinuous-**T**ime **M**arkov **C**hain model. For developers, the source code can be modified with ease to extend the funtionalities for more general cases. 
 
 ## Overview
