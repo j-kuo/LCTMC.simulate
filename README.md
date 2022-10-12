@@ -30,17 +30,17 @@ set.seed(456)
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
-    N.indiv = 5,
-    N.obs_times = 5,
-    max.obs_times = 9,
-    fix.obs_times = FALSE,
-    true_param = LCTMC.simulate::gen_true_param(K_class = 3, M_state = 2),
-    alpha.include = TRUE,
-    beta.include = TRUE,
-    K = 3, M = 2,
-    p1 = 2, p2 = 2,
-    initS_p = c(0.5, 0.5),
-    death = NULL
+  N.indiv = 5,
+  N.obs_times = 5,
+  max.obs_times = 9,
+  fix.obs_times = FALSE,
+  true_param = LCTMC.simulate::gen_true_param(K_class = 3, M_state = 2),
+  alpha.include = TRUE,
+  beta.include = TRUE,
+  K = 3, M = 2,
+  p1 = 2, p2 = 2,
+  initS_p = c(0.5, 0.5),
+  death = NULL
 )
 
 # convert to data frames
@@ -72,15 +72,14 @@ The red dots in the figures indicate the the times at which data are being colle
 
 In time-to-event analyses, however, making this assumption will likely lead to biased estimates. As any transitions that occur between observations are not being accounted for. The CTMC model or other Markov-based models handle these unobserved in-between-observation changes by making some assumptions on the sojourn time ([what is sojourn time](https://www.sciencedirect.com/topics/engineering/sojourn-time)).
 
-## Authors
-Jacky Kuo (_creator_, _author_)  
-(_advisor_)  
-
-## Publications
-Two papers are currently in preparation related to this work
-
 </br>
 
-## Wiki Links
+## More Info
+
+### Authors
+* **Jacky Kuo** - _author_, _maintainer_
+* **Wenyaw Chan**, PhD - _advisor_
+
+### Wiki
 * [Latent Class Modelling](https://en.wikipedia.org/wiki/Latent_class_model)
 * [Continuous-Time Markov Chain](https://en.wikipedia.org/wiki/Continuous-time_Markov_chain)
