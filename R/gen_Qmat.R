@@ -21,36 +21,29 @@
 #'
 #' @example inst/examples/ex_gen_Qmat.R
 
-gen_Qmat = function(
-    r0, beta, x, z,
-    M_state, K_class
-){
+gen_Qmat = function(r0,
+                    beta,
+                    x,
+                    z,
+                    M_state,
+                    K_class) {
   # allocate space
   Q = matrix(0, nrow = M_state, ncol = M_state)
 
-  # search for the correct class `k`, from state `i`, to state `j`
-  for(k in 1:K_class){ # (this k-for-loop is redundant but helps with parameter specification at catching potential error)
-    if(z == k){
-      # once k is found, compute q_rsk through a double loop
-      for(i in 1:M_state){
-        for(j in 1:M_state){
-          if(i != j){
-            qij = paste("q", i, j, sep = "")
-            baseline = r0[[z]][[qij]] # "r0" in r0*exp(b'*X)
-            b = beta[[z]][[qij]] # "b" in r0*exp(b'*X)
-            x = x
-            Q[i,j] = baseline * exp(as.numeric(b%*%x))
-          }
-        }
+  # compute q_ij (from state `i`, to state `j`) given `z`
+  for (i in 1:M_state) {
+    for (j in 1:M_state) {
+      if(i != j){
+        qij = paste("q", i, j, sep = "")
+        baseline = r0[[z]][[qij]] # "r0" in r0*exp(b'*X)
+        b = beta[[z]][[qij]] # "b" in r0*exp(b'*X)
+        x = x
+        Q[i,j] = baseline * exp(as.numeric(b%*%x))
       }
     }
   }
 
   # set diagonal as q_rr = -sum(q_rs); r != s
   diag(Q) = -rowSums(Q)
-
-  return(Q)
+  Q
 }
-
-
-

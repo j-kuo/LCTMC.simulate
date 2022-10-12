@@ -47,21 +47,19 @@
 #'
 #' @example inst/examples/ex_simulate_LCTMC.R
 
-simulate_LCTMC = function(
-    N.indiv = integer(),
-    N.obs_times = integer(),
-    max.obs_times = numeric(),
-    fix.obs_times = logical(),
-    true_param = list(),
-    alpha.include = logical(),
-    beta.include = logical(),
-    K = integer(),
-    M = integer(),
-    p1 = integer(),
-    p2 = integer(),
-    initS_p = c(),
-    death = integer()
-){
+simulate_LCTMC = function(N.indiv = integer(),
+                          N.obs_times = integer(),
+                          max.obs_times = numeric(),
+                          fix.obs_times = logical(),
+                          true_param = list(),
+                          alpha.include = logical(),
+                          beta.include = logical(),
+                          K = integer(),
+                          M = integer(),
+                          p1 = integer(),
+                          p2 = integer(),
+                          initS_p = c(),
+                          death = integer()) {
   ### checks function specification
   check_f = match.call()
   check_f[[1]] = as.name("check_simulate_LCTMC")
@@ -108,14 +106,14 @@ simulate_LCTMC = function(
   initS = sample(1:M, size = N.indiv, prob = initS_p, replace = TRUE)
 
   ### CTMC specs ~ absorbing state ---> if `death = NULL` then turn it into '-99' so it will never be reached
-  if(is.null(death)) death = -99
+  if (is.null(death)) death = -99
 
   ### simulation ~ a list object holding the output data
   sim_data = vector("list", length = N.indiv)
   names(sim_data) = IDlist[1:N.indiv]
 
   ### simulation ~ for-loop for each person
-  for(i in 1:N.indiv){
+  for (i in 1:N.indiv) {
     ## known data ~ ID number
     id = df_person$id[i]
 
@@ -136,16 +134,16 @@ simulate_LCTMC = function(
 
     ## known data ~ vector of observed state & time of observation
     state_at_obsTime = c()
-    if(fix.obs_times){
+    if (fix.obs_times) {
       obsTime = seq(0, max.obs_times, by = max.obs_times/N.obs_times) # fixed observation interval
-    }else{
+    } else {
       obsTime = gen_obsTime(N.obs_times = N.obs_times, min_t = 0, max_t = max.obs_times) # random observation time
     }
 
     ## simulation ~ true transition times
     cond1 = max(transTime) < max.obs_times
     cond2 = state_at_transTime[length(state_at_transTime)] != death
-    while(cond1 && cond2){
+    while (cond1 && cond2) {
       # generate Q
       temp_Q = gen_Qmat(
         r0 = true_param$r0, beta = true_param$beta,
@@ -164,14 +162,14 @@ simulate_LCTMC = function(
     names(transTime) = state_at_transTime
 
     ## simulation ~ make observation at predetermined times
-    for(t in obsTime){
+    for (t in obsTime) {
       temp = names((which(transTime <= t)))
       state_at_obsTime = c(state_at_obsTime, temp[length(temp)])
     }
     state_at_obsTime = as.numeric(state_at_obsTime)
 
     ## simulation ~ if death is a state reached, cut all trailing observations
-    if(death %in% state_at_obsTime){
+    if (death %in% state_at_obsTime) {
       death_index = which(state_at_obsTime == death)
       # remove all trailing death states & correpsponding observe times
       obsTime = obsTime[-death_index]
@@ -193,6 +191,6 @@ simulate_LCTMC = function(
     )
   }
 
-  ### output
+  ### return
   list(sim_data = sim_data, true_param = true_param)
 }

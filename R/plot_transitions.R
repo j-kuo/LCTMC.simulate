@@ -14,7 +14,7 @@
 #'
 #' @example inst/examples/ex_plot_transitions.R
 
-plot_transitions = function(df, id){
+plot_transitions = function(df, id) {
   ## subset into observed data & exact data
   df_obs.sub = df$obs[df$obs$id == id, ]
   df_exact.sub = df$exact[df$exact$id == id, ]

@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_simulate_LCTMC.R
 \name{check_simulate_LCTMC}
 \alias{check_simulate_LCTMC}
-\title{Checks \code{simulate_LCTMC()}}
+\title{Checks \code{simulate_LCTMC()} specification}
 \usage{
 check_simulate_LCTMC(
   N.indiv = integer(),

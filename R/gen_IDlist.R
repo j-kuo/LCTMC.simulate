@@ -7,7 +7,7 @@
 #'
 #' @example inst/examples/ex_gen_IDlist.R
 
-gen_IDlist = function(){
+gen_IDlist = function() {
   # create first two letters
   IDs = apply(expand.grid(LETTERS, LETTERS), 1, FUN = function(x) paste(x, collapse = ""))
 

@@ -14,10 +14,11 @@ gen_transition(from_state, Q, M_state)
 \item{M_state}{number of CTMC states (currently only support 2 or 3 states)}
 }
 \value{
-a list contaiing two elements
+a list containing two elements
 \enumerate{
 \item \strong{t} a numeric scalar. The exponentially distributed sojourn time it took to transition out of \code{from_state}
 \item \strong{to_state} a numeric scalar. This is the state which the random process transitioned to
+\item if something went wrong then NA values are returned
 }
 }
 \description{

@@ -18,27 +18,35 @@
 #'
 #' @example inst/examples/ex_convert_sim_data_2df.R
 
-convert_sim_data_2df = function(my_list, type){
-  if(!any(c("obs", "exact", "both") %in% tolower(type))) stop("`type` must be either 'obs' or 'exact'")
-  if(length(type) != 1) stop("`type` must be of length 1")
-
-  tidy.obs = function(i){
-    data.frame(id = NA,
-               obsTime = i$obsTime, state_at_obsTime = i$state_at_obsTime,
-               x1 = i$xi[1], x2 = i$xi[2],
-               w1 = i$wi[1], w2 = i$wi[2],
-               latent_class = i$zi)
+convert_sim_data_2df = function(my_list, type) {
+  if (!any(c("obs", "exact", "both") %in% tolower(type))) {
+    stop("`type` must be either 'obs' or 'exact'")
   }
-  tidy.exact = function(i){
-    data.frame(id = NA,
-               transTime = i$transTime, state_at_transTime = i$state_at_transTime,
-               x1 = i$xi[1], x2 = i$xi[2],
-               w1 = i$wi[1], w2 = i$wi[2],
-               latent_class = i$zi)
+  if (length(type) != 1) {
+    stop("`type` must be of length 1")
+  }
+
+  tidy.obs = function(i) {
+    data.frame(
+      id = NA,
+      obsTime = i$obsTime, state_at_obsTime = i$state_at_obsTime,
+      x1 = i$xi[1], x2 = i$xi[2],
+      w1 = i$wi[1], w2 = i$wi[2],
+      latent_class = i$zi
+    )
+  }
+  tidy.exact = function(i) {
+    data.frame(
+      id = NA,
+      transTime = i$transTime, state_at_transTime = i$state_at_transTime,
+      x1 = i$xi[1], x2 = i$xi[2],
+      w1 = i$wi[1], w2 = i$wi[2],
+      latent_class = i$zi
+    )
   }
 
   ## if only get observed data
-  if(tolower(type) == 'obs'){
+  if (tolower(type) == 'obs') {
     # a list of data frames
     df.obs = Map(f = tidy.obs, my_list)
     n_each.obs = sapply(df.obs, function(x) nrow(x))
@@ -47,12 +55,12 @@ convert_sim_data_2df = function(my_list, type){
     rownames(df.obs) = NULL
     # add ID column back
     df.obs$id = rep(names(n_each.obs), times = as.numeric(n_each.obs))
-
-    return(df.obs)
+    # return
+    df.obs
   }
 
   ## if only get exact data
-  if(tolower(type) == 'exact'){
+  if (tolower(type) == 'exact') {
     # a list of data frames
     df.exact = Map(f = tidy.exact, my_list)
     n_each.exact = sapply(df.exact, function(x) nrow(x))
@@ -61,12 +69,12 @@ convert_sim_data_2df = function(my_list, type){
     rownames(df.exact) = NULL
     # add ID column back
     df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
-
-    return(df.exact)
+    # return
+    df.exact
   }
 
   ## if get both
-  if(tolower(type) == 'both'){
+  if (tolower(type) == 'both') {
     # obs ~ a list of data frames
     df.obs = Map(f = tidy.obs, my_list)
     n_each.obs = sapply(df.obs, function(x) nrow(x))
@@ -85,6 +93,7 @@ convert_sim_data_2df = function(my_list, type){
     # exact ~ add ID column back
     df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
 
-    return(list(obs = df.obs, exact = df.exact))
+    # return
+    list(obs = df.obs, exact = df.exact)
   }
 }

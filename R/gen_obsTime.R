@@ -13,7 +13,7 @@
 #'
 #' @example inst/examples/ex_gen_obsTime.R
 
-gen_obsTime = function(N.obs_times, min_t, max_t){
+gen_obsTime = function(N.obs_times, min_t, max_t) {
   # generate random times
   obs_t = c(0, stats::runif(n = N.obs_times, min = min_t, max = max_t))
 
