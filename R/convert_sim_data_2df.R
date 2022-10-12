@@ -56,7 +56,7 @@ convert_sim_data_2df = function(my_list, type) {
     # add ID column back
     df.obs$id = rep(names(n_each.obs), times = as.numeric(n_each.obs))
     # return
-    df.obs
+    return(df.obs)
   }
 
   ## if only get exact data
@@ -70,7 +70,7 @@ convert_sim_data_2df = function(my_list, type) {
     # add ID column back
     df.exact$id = rep(names(n_each.exact), times = as.numeric(n_each.exact))
     # return
-    df.exact
+    return(df.exact)
   }
 
   ## if get both
