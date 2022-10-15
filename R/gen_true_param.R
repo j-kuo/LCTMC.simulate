@@ -2,8 +2,8 @@
 #'
 #' @description Generates the true model parameters values for simulating synthetic data.
 #'
-#' @param K_class a numeric scalar. The number of latent classes (currently only supports 3 class). Default is 2
-#' @param M_state a numeric scalar. The number CTMC states (currently only supports 2 or 3 states). Default is 2
+#' @param K_class an integer scalar. The number of latent classes (currently only supports 3 class). \cr Default is 3
+#' @param M_state an integer scalar. The number CTMC states (currently only supports 2 or 3 states). \cr Default is 2
 #' @param pi.Z1,pi.Z2 a list object containing 3 elements for the multinomial logistic model: `alpha0`, `alpha1`, `alpha2`. \cr
 #' `pi.Z1` will be used for class1's coefficient. `pi.Z2` for class2. And class3 is the referent. \cr
 #' For example: `pi.Z1 = list(alpha0 = 0.7123, alpha1 = 0.8678, alpha2 = 1.1234)`
@@ -39,8 +39,8 @@
 #'
 #' @example inst/examples/ex_gen_true_param.R
 
-gen_true_param = function(K_class = 2,
-                          M_state = 2,
+gen_true_param = function(K_class = integer(),
+                          M_state = integer(),
                           pi.Z1 = NULL,
                           pi.Z2 = NULL,
                           r0.Z1 = NULL,
