@@ -19,6 +19,7 @@
 #' @example inst/examples/ex_convert_sim_data_2df.R
 
 convert_sim_data_2df = function(my_list, type) {
+  ## checks
   if (!any(c("obs", "exact", "both") %in% tolower(type))) {
     stop("`type` must be either 'obs' or 'exact'")
   }
@@ -26,6 +27,7 @@ convert_sim_data_2df = function(my_list, type) {
     stop("`type` must be of length 1")
   }
 
+  ## custom function used to tidy within-list data frames
   tidy.obs = function(i) {
     data.frame(
       id = NA,
@@ -97,3 +99,4 @@ convert_sim_data_2df = function(my_list, type) {
     list(obs = df.obs, exact = df.exact)
   }
 }
+

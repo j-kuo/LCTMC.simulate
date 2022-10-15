@@ -50,10 +50,10 @@ gen_true_param = function(K_class = 2,
                           beta.Z2 = NULL,
                           beta.Z3 = NULL) {
   ## checks
-  if (length(K_class) != 1 & length(M_state) != 1) {
+  if (length(K_class) != 1 || length(M_state) != 1) {
     stop("`K_class` and `M_state` must be numeric length 1")
   }
-  if (!(K_class %in% 3) | !(M_state %in% 2:3)) {
+  if (!(K_class %in% 3) || !(M_state %in% 2:3)) {
     stop("Current only support combinations of `K_class` = 3 & `M_state` = 2 or 3")
   }
 

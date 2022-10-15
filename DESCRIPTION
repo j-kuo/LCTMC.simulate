@@ -5,7 +5,7 @@ Version: 1.1.2
 Authors@R: c(
     person("Jacky", "Kuo", email = "jacky.kuo@uth.tmc.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6825-9938")),
     person("Wenyaw", "Chan", email = "", role = c("ths"), comment = ""))
-Description: Provides an intuitive interface for users to simulate data from a latent class CTMC model.
+Description: Provides an intuitive interface for users to simulate data from a latent class continuous-time Markov chain (CTMC) model.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
