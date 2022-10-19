@@ -2,6 +2,7 @@
 
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/j-kuo/LCTMC.simulate/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/j-kuo/LCTMC.simulate/actions/workflows/R-CMD-check.yaml)
+  [![](https://img.shields.io/badge/R%20version-4.2.1-steelblue.svg)](https://cran.r-project.org/bin/windows/base/old/4.2.1)
   <!-- badges: end -->
 
 This R package provides an intuitive and simple to use interface to simulate data from a **L**atent class **C**ontinuous-**T**ime **M**arkov **C**hain model. For developers, the source code can be modified with ease to extend the funtionalities for more general cases. 
@@ -29,7 +30,7 @@ Here is an example to demonstrate the simulation of a binary-state process:
 set.seed(456)
 
 # simulate
-d = LCTMC.simulate::simulate_LCTMC(
+sim_data = LCTMC.simulate::simulate_LCTMC(
   N.indiv = 5,
   N.obs_times = 5,
   max.obs_times = 9,
@@ -42,19 +43,43 @@ d = LCTMC.simulate::simulate_LCTMC(
   initS_p = c(0.5, 0.5),
   death = NULL
 )
-
-# convert to data frames
-my_df = LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "both")
 ```
 
-Here we've simulated a binary-state process with `K = 3` latent clusters. Using the `N.indiv = 5` argument to generate 5 independent CTMC processes (one per person). Each person is observed `N.obs_times = 5` times at random between the time interval [0, 9] (determined by `max.obs_times`).
+Here we've simulated a binary-state process with `K = 3` latent clusters. Using the `N.indiv = 5` argument to generate 5 independent CTMC processes (one per person). Excluding the baseline, each person is observed `N.obs_times = 5` times at random between the time interval (0, 9] (determined by `max.obs_times`).
 
-## Visualizing CTMC
-To visualize the CTMC process, here we plot one person's (ID# EA000) binary-state process over time, 
+To extract and tidy the simulated data, use the `as.data.frame()` command to convert it into table format. In this example, we specify `id = "EA000"` to extract only this person's simulated data.
 
 ```R
-# plot
-LCTMC.simulate::plot_transitions(df = my_df, id = "EA000")
+# S3 method ~ coerce the "observed" data into a data frame
+as.data.frame(sim_data, type = "obs", id = "EA000")
+
+     id   obsTime state_at_obsTime         x1 x2         w1 w2 latent_class
+1 EA000 0.0000000                1 -0.5715353  1 -0.2727285  0            2
+2 EA000 0.7946141                1 -0.5715353  1 -0.2727285  0            2
+3 EA000 1.3956032                1 -0.5715353  1 -0.2727285  0            2
+4 EA000 2.3288639                2 -0.5715353  1 -0.2727285  0            2
+5 EA000 6.9690155                2 -0.5715353  1 -0.2727285  0            2
+6 EA000 7.8119400                2 -0.5715353  1 -0.2727285  0            2
+
+
+# S3 method ~ coerce the "exact transition" data into a data frame
+as.data.frame(sim_data, type = "exact", id = "EA000")
+
+     id transTime state_at_transTime         x1 x2         w1 w2 latent_class
+1 EA000  0.000000                  1 -0.5715353  1 -0.2727285  0            2
+2 EA000  1.472028                  2 -0.5715353  1 -0.2727285  0            2
+3 EA000  3.715214                  1 -0.5715353  1 -0.2727285  0            2
+4 EA000  4.180420                  2 -0.5715353  1 -0.2727285  0            2
+5 EA000  8.318919                  1 -0.5715353  1 -0.2727285  0            2
+6 EA000  9.630743                  2 -0.5715353  1 -0.2727285  0            2
+```
+
+## Visualizing CTMC
+To visualize the CTMC process, here we plot person **EA000**'s longitudinal data over time, 
+
+```R
+# S3 method for plotting
+plot(sim_data, id = "EA000")
 ```
 
 <img src="visuals/transition_example.png" width="850">
@@ -72,13 +97,15 @@ The red dots in the figures indicate the the times at which data are being colle
 
 In time-to-event analyses, however, making this assumption will likely lead to biased estimates. As any transitions that occur between observations are not being accounted for. The CTMC model or other Markov-based models handle these unobserved in-between-observation changes by making some assumptions on the sojourn time ([what is sojourn time](https://www.sciencedirect.com/topics/engineering/sojourn-time)).
 
+
+
 </br>
 
 ## More Info
 
 ### Authors
 * **Jacky Kuo** - _author_, _maintainer_
-* **Wenyaw Chan**, PhD - _advisor_
+* **Wenyaw Chan**, PhD - _dissertation advisor_
 
 ### Wiki
 * [Latent Class Modelling](https://en.wikipedia.org/wiki/Latent_class_model)
