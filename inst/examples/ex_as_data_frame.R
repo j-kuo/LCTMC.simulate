@@ -1,5 +1,5 @@
 # set seed
-set.seed(123)
+set.seed(456)
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
@@ -22,6 +22,14 @@ d = LCTMC.simulate::simulate_LCTMC(
   death = NULL
 )
 
-# convert to data.frame
-head(LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "obs"))
-head(LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "exact"))
+# coerce to data.frame ~ S3 method for 'lctmc.sim' objects
+head(as.data.frame(x = d, type = "obs"))
+head(as.data.frame(x = d, type = "exact"))
+
+# leaving `type` unspecified
+sim_df_list = as.data.frame(x = d)
+class(sim_df_list)
+names(sim_df_list)
+
+# specify an ID number
+as.data.frame(x = d, id = c("EA000"))

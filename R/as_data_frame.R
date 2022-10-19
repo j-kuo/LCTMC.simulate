@@ -2,29 +2,46 @@
 #'
 #' @description Converts the output of [simulate_LCTMC()] to a "data.frame" object
 #'
-#' @param my_list a list object obtained from the `simulate_LCTMC()` function
-#' @param type a character scalar of either "obs", "exact", or "both"
+#' @param x A custom class list object obtained from the `simulate_LCTMC()` function. It should be of class 'lctmc.sim'
+#' @param row.names,optional Ignored for objects of class 'lctmc.sim'
+#' @param ... The following argument can be specified
+#' \describe{
+#'   \item{type}{a character scalar of either "obs", "exact", or "both". If left unspecified, then defaults to 'both'}
+#'   \item{id}{a character scalar of ID numbers. If specified, then the resulting data frame only contains the ID numbers listed in this vector. \cr
+#'             If left unspecified, then all ID numbers found in `x` are used}
+#' }
 #'
-#' @return if `type = "both"` then a a list object with **2** elements is returned:
+#' @return if `type = "both"` then a list object with **two** elements is returned:
 #' \enumerate{
 #'   \item **obs** this data contains the disease status at some pre-defined observed times. This essentially means that all outcomes are interval-censored.
 #'   \item **exact** this data contains the exact time of disease status transitioning to a different state (i.e., non-censored data)
 #' }
-#' If `type` is equal to either "obs" or "exact" then a data.frame object is returned. The data frames corresponds to the either censored data or exactly-observed data
+#' If `type` is equal to either "obs" or "exact" then a data.frame object is returned.
+#' The data frames corresponds to the either censored data or exactly-observed data
 #'
-#' @export
+#' @exportS3Method
 #'
 #' @seealso [simulate_LCTMC()]
 #'
-#' @example inst/examples/ex_convert_sim_data_2df.R
+#' @example inst/examples/ex_as_data_frame.R
 
-convert_sim_data_2df = function(my_list, type) {
+as.data.frame.lctmc.sim = function(x, row.names = NULL, optional = FALSE, ...) {
+  ## unpacks
+  args = list(...)
+  my_list = x$sim_data
+  type = ifelse(is.null(args$type), "both", args$type)
+
   ## checks
-  if (!any(c("obs", "exact", "both") %in% tolower(type))) {
-    stop("`type` must be either 'obs' or 'exact'")
-  }
   if (length(type) != 1) {
-    stop("`type` must be of length 1")
+    stop("`type` must be specified and it must be of length 1")
+  }
+  if (!any(c("obs", "exact", "both") %in% tolower(type))) {
+    stop("`type` must be either 'obs', 'exact', or 'both'")
+  }
+  if (!is.null(args$id) && any(!args$id %in% names(my_list))) {
+    stop("some ID numbers specified in `id` are not found in `x`")
+  } else if (!is.null(args$id)) {
+    my_list = my_list[args$id] # subset
   }
 
   ## custom function used to tidy within-list data frames

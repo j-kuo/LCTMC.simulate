@@ -56,7 +56,8 @@ For example, with \code{M = 3L} and \code{initS_p = c(1/2, 1/2, 0)}, then 50\% o
 Death state is treated as an absorbing state. Observations will be truncated after death occurs. In addition, death occurrence is assumed to be known exactly. \cr}
 }
 \value{
-a list object containing two sub list objects. The first is, \code{sim_data}, the simulated data where each element is one person.
+a custom class, 'lctmc.sim', list object containing two sub list objects.
+The first is, \code{sim_data}, the simulated data where each element is one person.
 Within each is a list containing the following elements:
 \itemize{
 \item \strong{obsTime}: a vector of numeric times when the observations are made
@@ -75,7 +76,7 @@ Given some underlying parameter values that dictate the latent class assignment 
 simulates a latent CTMC process and outputs the result to a list object.
 }
 \note{
-Once simulation is complete, use \code{convert_sim_data_2df()} to format the data into a "data.frame" object.
+Once simulation is complete, use \code{as.data.frame()} to format the data into a 'data.frame' object.
 }
 \examples{
 # set seed

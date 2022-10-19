@@ -5,8 +5,8 @@
 \title{Generates true model parameters}
 \usage{
 gen_true_param(
-  K_class = 2,
-  M_state = 2,
+  K_class = integer(),
+  M_state = integer(),
   pi.Z1 = NULL,
   pi.Z2 = NULL,
   r0.Z1 = NULL,
@@ -18,9 +18,9 @@ gen_true_param(
 )
 }
 \arguments{
-\item{K_class}{a numeric scalar. The number of latent classes (currently only supports 3 class). Default is 2}
+\item{K_class}{an integer scalar. The number of latent classes (currently only supports 3 class). \cr Default is 3}
 
-\item{M_state}{a numeric scalar. The number CTMC states (currently only supports 2 or 3 states). Default is 2}
+\item{M_state}{an integer scalar. The number CTMC states (currently only supports 2 or 3 states). \cr Default is 2}
 
 \item{pi.Z1, pi.Z2}{a list object containing 3 elements for the multinomial logistic model: \code{alpha0}, \code{alpha1}, \code{alpha2}. \cr
 \code{pi.Z1} will be used for class1's coefficient. \code{pi.Z2} for class2. And class3 is the referent. \cr

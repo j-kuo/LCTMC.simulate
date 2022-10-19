@@ -1,20 +1,29 @@
-#' @title Simulate a data from a latent CTMC model
+#' @title Visualizes simulated data
 #'
-#' @description Given some underlying parameter values that dictate the latent class assignment process, the CTMC process, and observation times.
-#' simulates a latent CTMC process and outputs the result to a list object.
+#' @description This function visualizes the simulated longitudinal data for the given ID number
 #'
-#' @param df a list object obtained from `convert_sim_data_2df(...)`. This list object should hold two data frame objects `obs` and `exact`. \cr
-#' @param id a character scalar to indicate which person (ID number) should be plotted
+#' @param x A custom class list object obtained from `simulate_LCTMC()`. The custom class is called 'lctmc.sim'
+#' @param ... The following variable should be specified within `...`
+#' \describe{
+#'   \item{id}{A character scalar to indicate which person (ID number) should be plotted}
+#' }
 #'
 #' @return This function generates a plot and returns `NULL`
 #'
-#' @export
+#' @exportS3Method
 #'
-#' @seealso [simulate_LCTMC()], [convert_sim_data_2df()]
+#' @seealso [simulate_LCTMC()], [as.data.frame.lctmc.sim()]
 #'
-#' @example inst/examples/ex_plot_transitions.R
+#' @example inst/examples/ex_plot.R
 
-plot_transitions = function(df, id) {
+plot.lctmc.sim = function(x, ...) {
+  ## unpack check
+  id = list(...)$id
+  df = as.data.frame(x = x, type = 'both', id = id)
+  if (length(id) != 1 || !(id %in% df$obs$id) || !(id %in% df$exact$id)) {
+    stop("`id` should be a length 1 character variable, and it should be an ID number available in")
+  }
+
   ## subset into observed data & exact data
   df_obs.sub = df$obs[df$obs$id == id, ]
   df_exact.sub = df$exact[df$exact$id == id, ]

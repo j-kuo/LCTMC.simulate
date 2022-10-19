@@ -22,8 +22,5 @@ d = LCTMC.simulate::simulate_LCTMC(
   death = NULL
 )
 
-# convert to data.frames
-my_df = LCTMC.simulate::convert_sim_data_2df(my_list = d$sim_data, type = "both")
-
-# plot
-LCTMC.simulate::plot_transitions(df = my_df, id = "EA000")
+# plot ~ S3 method for 'lctmc.sim' objects
+plot(x = d, id = "EA000")

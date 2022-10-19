@@ -25,7 +25,8 @@
 #' @param death if death is a possible state, then use this argument to specify it. \cr
 #' Death state is treated as an absorbing state. Observations will be truncated after death occurs. In addition, death occurrence is assumed to be known exactly. \cr
 #'
-#' @return a list object containing two sub list objects. The first is, `sim_data`, the simulated data where each element is one person.
+#' @return a custom class, 'lctmc.sim', list object containing two sub list objects.
+#' The first is, `sim_data`, the simulated data where each element is one person.
 #' Within each is a list containing the following elements:
 #' \itemize{
 #'   \item **obsTime**: a vector of numeric times when the observations are made
@@ -41,7 +42,7 @@
 #'
 #' @export
 #'
-#' @note Once simulation is complete, use `convert_sim_data_2df()` to format the data into a "data.frame" object.
+#' @note Once simulation is complete, use `as.data.frame()` to format the data into a 'data.frame' object.
 #'
 #' @seealso [gen_Qmat()], [gen_transition()], [gen_true_param()], [force0_true_param()]
 #'
@@ -192,5 +193,7 @@ simulate_LCTMC = function(N.indiv = integer(),
   }
 
   ### return
-  list(sim_data = sim_data, true_param = true_param)
+  out = list(sim_data = sim_data, true_param = true_param)
+  class(out) = append("lctmc.sim", class(out))
+  return(out)
 }
