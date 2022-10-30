@@ -59,10 +59,10 @@ gen_true_param = function(K_class = integer(),
 
   ## if unspecified, use default values (1) ~ pi
   if (is.null(pi.Z1)) {
-    pi.Z1 = list(alpha0 = 0.7123, alpha1 = 0.8678, alpha2 = 1.1234)
+    pi.Z1 = list(alpha0 = 0.30, alpha1 = -0.87, alpha2 = -1.15)
   }
   if (is.null(pi.Z2)) {
-    pi.Z2 = list(alpha0 = 0.4001, alpha1 = 1.1101, alpha2 = 0.7654)
+    pi.Z2 = list(alpha0 = 0.26, alpha1 = -1.11, alpha2 = -0.77)
   }
 
   ## if unspecified, use default values (2) ~ r0
@@ -106,36 +106,36 @@ gen_true_param = function(K_class = integer(),
   ## if unspecified, use default values (3) ~ beta
   if (is.null(beta.Z1)) {
     if (M_state == 2) {
-      beta.Z1 = list(q12 = c(1.32, -0.29), q21 = c(-0.45, 0.65))
+      beta.Z1 = list(q12 = c(1.32, -0.15), q21 = c(-0.45, 0.33))
     }
     if (M_state == 3) {
       beta.Z1 = list(
-        q12 = c(1.32, -0.39), q13 = c(0.00, 0.00),
-        q21 = c(0.65, 0.45), q23 = c(0.40, -0.40),
+        q12 = c(0.85, -0.25), q13 = c(0.00, 0.00),
+        q21 = c(0.42, 0.30), q23 = c(0.26, -0.25),
         q31 = c(0.00, 0.00), q32 = c(0.00, 0.00)
       )
     }
   }
   if (is.null(beta.Z2)) {
     if (M_state == 2) {
-      beta.Z2 = list(q12 = c(0.62, -0.66), q21 = c(-0.16, 0.26))
+      beta.Z2 = list(q12 = c(0.62, -0.35), q21 = c(-0.16, 0.15))
     }
     if (M_state == 3) {
       beta.Z2 = list(
-        q12 = c(0.62, -0.72), q13 = c(0.00, 0.00),
-        q21 = c(-0.36, 0.35), q23 = c(-0.48, 0.65),
+        q12 = c(0.40, -0.47), q13 = c(0.00, 0.00),
+        q21 = c(-0.24, 0.22), q23 = c(-0.31, 0.42),
         q31 = c(0.00, 0.00), q32 = c(0.00, 0.00)
       )
     }
   }
   if (is.null(beta.Z3)) {
     if (M_state == 2) {
-      beta.Z3 = list(q12 = c(0.19, 0.40), q21 = c(0.55, -0.22))
+      beta.Z3 = list(q12 = c(0.19, 0.20), q21 = c(0.55, -0.11))
     }
     if (M_state == 3) {
       beta.Z3 = list(
-        q12 = c(-0.40, 0.40), q13 = c(0.00, 0.00),
-        q21 = c(0.40, -0.25), q23 = c(-0.25, 0.50),
+        q12 = c(-0.26, 0.24), q13 = c(0.00, 0.00),
+        q21 = c(0.25, -0.16), q23 = c(-0.17, 0.32),
         q31 = c(0.00, 0.00), q32 = c(0.00, 0.00)
       )
     }

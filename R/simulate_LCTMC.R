@@ -73,7 +73,7 @@ simulate_LCTMC = function(N.indiv = integer(),
 
     intercept = 1,
 
-    x1 = stats::rnorm(n = N.indiv, mean = 0.5, sd = 1.5),
+    x1 = stats::rnorm(n = N.indiv, mean = 0.0, sd = 0.07),
     x2 = sample(x = 0:1, size = N.indiv, prob = c(0.40, 0.60), replace = TRUE),
 
     w1 = stats::rnorm(n = N.indiv, mean = 0.0, sd = 2.0),
