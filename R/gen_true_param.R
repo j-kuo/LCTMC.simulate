@@ -17,19 +17,19 @@
 #' For example: `beta.Z1 = list(q12 = c(1.32, -0.29), q21 = c(-0.45, 0.65))`
 #'
 #' @return A nested list object containing three elements: `r0`, `beta`, and `pi`
-#' \enumerate{
-#'   \item **r0**: a nested list, one element for each \eqn{k} class, containing the `r0` component of the formula: \cr
+#' \describe{
+#'   \item{r0}{a nested list, one element for each \eqn{k} class, containing the `r0` component of the formula: \cr
 #'         \deqn{
 #'           q_{rs(k)} = r0_{rs(k)} \cdot exp(\beta_{rs(k)}X)
-#'         }
-#'   \item **beta**: a nested list, one element for each \eqn{k} class, containing the `beta` component of the formula: \cr
+#'         }}
+#'   \item{beta}{a nested list, one element for each \eqn{k} class, containing the `beta` component of the formula: \cr
 #'         \deqn{
 #'           q_{rs(k)} = r0_{rs(k)} \cdot exp(\beta_{rs(k)}X)
-#'         }
-#'   \item **pi**: a nested list of \eqn{K-1} elements because the last class is the referent group. These parameters are the coefficients of the multinomial logistic model:
+#'         }}
+#'   \item{pi}{a nested list of \eqn{K-1} elements because the last class is the referent group. These parameters are the coefficients of the multinomial logistic model:
 #'         \deqn{
 #'           log(\frac{\pi_{(k)}}{\pi_{K}}) = \alpha_{(k)}W
-#'         }
+#'         }}
 #' }
 #'
 #' @export
@@ -68,37 +68,37 @@ gen_true_param = function(K_class = integer(),
   ## if unspecified, use default values (2) ~ r0
   if (is.null(r0.Z1)) {
     if (M_state == 2) {
-      r0.Z1 = list(q12 = 0.30, q21 = 1.83)
+      r0.Z1 = list(q12 = 0.030, q21 = 0.183)
     }
     if (M_state == 3) {
       r0.Z1 = list(
-        q12 = 0.13, q13 = 0.00,
-        q21 = 1.93, q23 = 0.011,
-        q31 = 0.00, q32 = 0.00
+        q12 = 0.0130, q13 = 0.0000,
+        q21 = 0.1930, q23 = 0.0011,
+        q31 = 0.0000, q32 = 0.0000
       )
     }
   }
   if (is.null(r0.Z2)) {
     if (M_state == 2) {
-      r0.Z2 = list(q12 = 1.64, q21 = 0.35)
+      r0.Z2 = list(q12 = 0.164, q21 = 0.035)
     }
     if (M_state == 3) {
       r0.Z2 = list(
-        q12 = 1.74, q13 = 0.00,
-        q21 = 0.33, q23 = 0.028,
-        q31 = 0.00, q32 = 0.00
+        q12 = 0.1740, q13 = 0.0000,
+        q21 = 0.0330, q23 = 0.0028,
+        q31 = 0.0000, q32 = 0.0000
       )
     }
   }
   if (is.null(r0.Z3)) {
     if (M_state == 2) {
-      r0.Z3 = list(q12 = 1.05, q21 = 1.10)
+      r0.Z3 = list(q12 = 0.105, q21 = 0.110)
     }
     if (M_state == 3) {
       r0.Z3 = list(
-        q12 = 0.80, q13 = 0.00,
-        q21 = 1.10, q23 = 0.065,
-        q31 = 0.00, q32 = 0.00
+        q12 = 0.0811, q13 = 0.0000,
+        q21 = 0.1100, q23 = 0.0065,
+        q31 = 0.0000, q32 = 0.0000
       )
     }
   }
@@ -106,36 +106,36 @@ gen_true_param = function(K_class = integer(),
   ## if unspecified, use default values (3) ~ beta
   if (is.null(beta.Z1)) {
     if (M_state == 2) {
-      beta.Z1 = list(q12 = c(1.32, -0.15), q21 = c(-0.45, 0.33))
+      beta.Z1 = list(q12 = c(-1.32, 0.15), q21 = c(0.45, -0.33))
     }
     if (M_state == 3) {
       beta.Z1 = list(
-        q12 = c(0.85, -0.25), q13 = c(0.00, 0.00),
-        q21 = c(0.42, 0.30), q23 = c(0.26, -0.25),
+        q12 = c(-0.85, 0.25), q13 = c(0.00, 0.00),
+        q21 = c(-0.42, -0.30), q23 = c(-0.26, 0.25),
         q31 = c(0.00, 0.00), q32 = c(0.00, 0.00)
       )
     }
   }
   if (is.null(beta.Z2)) {
     if (M_state == 2) {
-      beta.Z2 = list(q12 = c(0.62, -0.35), q21 = c(-0.16, 0.15))
+      beta.Z2 = list(q12 = c(-0.62, 0.35), q21 = c(0.16, -0.15))
     }
     if (M_state == 3) {
       beta.Z2 = list(
-        q12 = c(0.40, -0.47), q13 = c(0.00, 0.00),
-        q21 = c(-0.24, 0.22), q23 = c(-0.31, 0.42),
+        q12 = c(-0.40, 0.47), q13 = c(0.00, 0.00),
+        q21 = c(0.24, -0.22), q23 = c(0.31, -0.42),
         q31 = c(0.00, 0.00), q32 = c(0.00, 0.00)
       )
     }
   }
   if (is.null(beta.Z3)) {
     if (M_state == 2) {
-      beta.Z3 = list(q12 = c(0.19, 0.20), q21 = c(0.55, -0.11))
+      beta.Z3 = list(q12 = c(-0.19, -0.20), q21 = c(-0.55, 0.11))
     }
     if (M_state == 3) {
       beta.Z3 = list(
-        q12 = c(-0.26, 0.24), q13 = c(0.00, 0.00),
-        q21 = c(0.25, -0.16), q23 = c(-0.17, 0.32),
+        q12 = c(0.26, -0.24), q13 = c(0.00, 0.00),
+        q21 = c(-0.25, 0.16), q23 = c(0.17, -0.32),
         q31 = c(0.00, 0.00), q32 = c(0.00, 0.00)
       )
     }
