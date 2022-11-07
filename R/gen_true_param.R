@@ -59,10 +59,10 @@ gen_true_param = function(K_class = integer(),
 
   ## if unspecified, use default values (1) ~ pi
   if (is.null(pi.Z1)) {
-    pi.Z1 = list(alpha0 = 0.30, alpha1 = -0.87, alpha2 = -1.15)
+    pi.Z1 = list(alpha0 = 0.55, alpha1 = -0.80, alpha2 = -1.17)
   }
   if (is.null(pi.Z2)) {
-    pi.Z2 = list(alpha0 = 0.26, alpha1 = -1.11, alpha2 = -0.77)
+    pi.Z2 = list(alpha0 = 0.29, alpha1 = -1.20, alpha2 = -0.71)
   }
 
   ## if unspecified, use default values (2) ~ r0
