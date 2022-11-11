@@ -20,8 +20,6 @@ In our work, we extended the CTMC model by assuming individuals belong to one of
 devtools::install_github("j-kuo/LCTMC.simulate")
 ```
 
-Note that 'LCTMC.simulate' was built under **R version 4.2.1**, though it is likely to work with older versions of R too.
-
 ## Usage
 Here is an example to demonstrate the simulation of a binary-state process:
 
