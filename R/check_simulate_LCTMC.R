@@ -15,6 +15,7 @@
 #' @param p2 See documentation for `simulate_LCTMC()`
 #' @param initS_p See documentation for `simulate_LCTMC()`
 #' @param death See documentation for `simulate_LCTMC()`
+#' @param sojourn See documentation for `simulate_LCTMC()`
 #'
 #' @return if checks passes without issue then function returns NULL
 #'
@@ -32,7 +33,8 @@ check_simulate_LCTMC = function(N.indiv = integer(),
                                 p1 = integer(),
                                 p2 = integer(),
                                 initS_p = c(),
-                                death = integer()) {
+                                death = integer(),
+                                sojourn = character()) {
   ## checks `true_param` list object
   if (length(true_param) != 3 || !all(c('r0', 'beta', "pi") %in% names(true_param))) {
     stop("`true_param` should be a list object of 3 elements: 'r0' , 'beta' , 'pi'")

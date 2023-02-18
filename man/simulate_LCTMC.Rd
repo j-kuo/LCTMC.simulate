@@ -17,7 +17,8 @@ simulate_LCTMC(
   p1 = integer(),
   p2 = integer(),
   initS_p = c(),
-  death = integer()
+  death = integer(),
+  sojourn = character()
 )
 }
 \arguments{
@@ -54,6 +55,9 @@ For example, with \code{M = 3L} and \code{initS_p = c(1/2, 1/2, 0)}, then 50\% o
 
 \item{death}{if death is a possible state, then use this argument to specify it. \cr
 Death state is treated as an absorbing state. Observations will be truncated after death occurs. In addition, death occurrence is assumed to be known exactly. \cr}
+
+\item{sojourn}{a character scalar to indicate the distribution of the sojourn times.
+Must take either "exp" or "gamma" at the moment. In the case of gamma, the 'shape' parameter is currently constrained.}
 }
 \value{
 a custom class, 'lctmc.sim', list object containing two sub list objects.
@@ -100,7 +104,8 @@ d = LCTMC.simulate::simulate_LCTMC(
    p2 = 2,
 
    initS_p = c(0.5, 0.5),
-   death = NULL
+   death = NULL,
+   sojourn = 'exp'
 )
 
 # output is a list containing two elements:

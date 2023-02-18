@@ -52,7 +52,7 @@ plot.lctmc.sim = function(x, ...) {
     xlim = c(xlim1, xlim2),
     ylim = c(ylim1.range, ylim2.range),
     xaxt = 'n', yaxt = 'n',
-    main = paste("[Person ID: ", id, "]\nActual transition of disease state", sep = ""),
+    main = paste("[Person: ", id, "]\nThe actual longitudinal process", sep = ""),
     xlab = "Time",
     ylab = "Disease States",
     lwd = 2
@@ -89,7 +89,7 @@ plot.lctmc.sim = function(x, ...) {
     xlim = c(xlim1, xlim2),
     ylim = c(ylim1.range, ylim2.range),
     xaxt = 'n', yaxt = 'n',
-    main = paste("[Person ID: ", id, "]\nIf we treat the observed data \n as the actual transition process", sep = ""),
+    main = paste("[Person: ", id, "]\nWhat was observed by the clinic", sep = ""),
     xlab = "Time",
     ylab = "Disease States",
     lwd = 2,
@@ -126,7 +126,7 @@ plot.lctmc.sim = function(x, ...) {
   graphics::plot.new()
   graphics::legend("left", inset = c(0.2, 0),
                    lty = c(1, 3), lwd = c(2, 2), col = c('black', "#2C7DB5"),
-                   legend = c("The Actual Disease Dynamic", "The Incorrect Disease Dynamic"),
+                   legend = c("The actual disease process", "The censored process"),
                    bty = "n",
                    ncol = 1,
                    pt.cex = 1, cex = 1.4)
@@ -134,7 +134,7 @@ plot.lctmc.sim = function(x, ...) {
   graphics::plot.new()
   graphics::legend("left",
                    fill = c("#8B0000"),
-                   legend = "Observations (e.g., doctor's visit)",
+                   legend = "Observations (e.g., clinic visits)",
                    bty = "n",
                    ncol = 1,
                    pt.cex = 1, cex = 1.4)

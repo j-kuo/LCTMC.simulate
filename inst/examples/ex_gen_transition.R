@@ -13,6 +13,9 @@
                                 M_state = 3,
                                 K_class = 3)
 
-  # generate a transition
-  gen_transition(from_state = 2, Q = Q, M_state = 3)
+  # generate a transition ~ assume exp
+  gen_transition(from_state = 2, Q = Q, M_state = 3, sojourn = "exp")
+
+  # generate a transition ~ assume gamma
+  gen_transition(from_state = 2, Q = Q, M_state = 3, sojourn = "gamma")
 }

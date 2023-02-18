@@ -17,7 +17,8 @@ check_simulate_LCTMC(
   p1 = integer(),
   p2 = integer(),
   initS_p = c(),
-  death = integer()
+  death = integer(),
+  sojourn = character()
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ check_simulate_LCTMC(
 \item{initS_p}{See documentation for \code{simulate_LCTMC()}}
 
 \item{death}{See documentation for \code{simulate_LCTMC()}}
+
+\item{sojourn}{See documentation for \code{simulate_LCTMC()}}
 }
 \value{
 if checks passes without issue then function returns NULL

@@ -36,10 +36,10 @@ set.seed(456)
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
-  N.indiv = 10,
-  N.obs_times = 10,
+  N.indiv = 5,
+  N.obs_times = 5,
 
-  max.obs_times = 50,
+  max.obs_times = 9,
   fix.obs_times = FALSE,
 
   true_param = LCTMC.simulate::gen_true_param(K_class = 3, M_state = 2),
@@ -52,7 +52,8 @@ d = LCTMC.simulate::simulate_LCTMC(
   p2 = 2,
 
   initS_p = c(0.5, 0.5),
-  death = NULL
+  death = NULL,
+  sojourn = 'gamma'
 )
 
 # coerce to data.frame ~ S3 method for 'lctmc.sim' objects

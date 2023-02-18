@@ -4,7 +4,7 @@
 \alias{gen_transition}
 \title{Simulates a transition with exponentially distributed sojourn time}
 \usage{
-gen_transition(from_state, Q, M_state)
+gen_transition(from_state, Q, M_state, sojourn)
 }
 \arguments{
 \item{from_state}{the current state to transition out of}
@@ -12,6 +12,9 @@ gen_transition(from_state, Q, M_state)
 \item{Q}{transition rate matrix obtained from \code{gen_Qmat()}}
 
 \item{M_state}{number of CTMC states (currently only support 2 or 3 states)}
+
+\item{sojourn}{a character scalar to indicate the distribution of the sojourn times.
+Must take either "exp" or "gamma" at the moment. In the case of gamma, the 'shape' parameter is currently constrained.}
 }
 \value{
 a list containing two elements
@@ -42,8 +45,11 @@ Generates the process of state transitioning. This is done by following 2 steps:
                                 M_state = 3,
                                 K_class = 3)
 
-  # generate a transition
-  gen_transition(from_state = 2, Q = Q, M_state = 3)
+  # generate a transition ~ assume exp
+  gen_transition(from_state = 2, Q = Q, M_state = 3, sojourn = "exp")
+
+  # generate a transition ~ assume gamma
+  gen_transition(from_state = 2, Q = Q, M_state = 3, sojourn = "gamma")
 }
 }
 \seealso{

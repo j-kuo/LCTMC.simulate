@@ -24,6 +24,8 @@
 #' For example, with `M = 3L` and `initS_p = c(1/2, 1/2, 0)`, then 50% of the individuals will start in state 1 of the CTMC process, and the other 50% will start in state 2.
 #' @param death if death is a possible state, then use this argument to specify it. \cr
 #' Death state is treated as an absorbing state. Observations will be truncated after death occurs. In addition, death occurrence is assumed to be known exactly. \cr
+#' @param sojourn a character scalar to indicate the distribution of the sojourn times.
+#' Must take either "exp" or "gamma" at the moment. In the case of gamma, the 'shape' parameter is currently constrained.
 #'
 #' @return a custom class, 'lctmc.sim', list object containing two sub list objects.
 #' The first is, `sim_data`, the simulated data where each element is one person.
@@ -60,7 +62,8 @@ simulate_LCTMC = function(N.indiv = integer(),
                           p1 = integer(),
                           p2 = integer(),
                           initS_p = c(),
-                          death = integer()) {
+                          death = integer(),
+                          sojourn = character()) {
   ### checks function specification
   check_f = match.call()
   check_f[[1]] = as.name("check_simulate_LCTMC")
@@ -152,7 +155,12 @@ simulate_LCTMC = function(N.indiv = integer(),
         M_state = M, K_class = K
       )
       # perform transition from current-state according to Q
-      temp = gen_transition(from_state = state_at_transTime[length(state_at_transTime)], Q = temp_Q, M_state = M)
+      temp = gen_transition(
+        from_state = state_at_transTime[length(state_at_transTime)],
+        Q = temp_Q,
+        M_state = M,
+        sojourn = sojourn
+      )
       # append result to time & state vector
       transTime = c(transTime, transTime[length(transTime)] + temp$t)
       state_at_transTime = c(state_at_transTime, temp$to_state)

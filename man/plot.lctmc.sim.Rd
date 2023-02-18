@@ -42,11 +42,12 @@ d = LCTMC.simulate::simulate_LCTMC(
   p2 = 2,
 
   initS_p = c(0.5, 0.5),
-  death = NULL
+  death = NULL,
+  sojourn = 'gamma'
 )
 
 # plot ~ S3 method for 'lctmc.sim' objects
-plot(x = d, id = "EA000")
+plot(x = d, id = "BA000")
 }
 \seealso{
 \code{\link[=simulate_LCTMC]{simulate_LCTMC()}}, \code{\link[=as.data.frame.lctmc.sim]{as.data.frame.lctmc.sim()}}

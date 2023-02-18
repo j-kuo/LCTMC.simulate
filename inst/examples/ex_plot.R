@@ -6,7 +6,7 @@ d = LCTMC.simulate::simulate_LCTMC(
   N.indiv = 5,
   N.obs_times = 5,
 
-  max.obs_times = 9,
+  max.obs_times = 10,
   fix.obs_times = FALSE,
 
   true_param = LCTMC.simulate::gen_true_param(K_class = 3, M_state = 2),
@@ -19,8 +19,9 @@ d = LCTMC.simulate::simulate_LCTMC(
   p2 = 2,
 
   initS_p = c(0.5, 0.5),
-  death = NULL
+  death = NULL,
+  sojourn = 'gamma'
 )
 
 # plot ~ S3 method for 'lctmc.sim' objects
-plot(x = d, id = "EA000")
+plot(x = d, id = "BA000")
