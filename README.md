@@ -46,7 +46,7 @@ d = LCTMC.simulate::simulate_LCTMC(
 
   initS_p = c(0.5, 0.5),
   death = NULL,
-  sojourn = 'gamma'
+  sojourn.shape = 0.5
 )
 ```
 
