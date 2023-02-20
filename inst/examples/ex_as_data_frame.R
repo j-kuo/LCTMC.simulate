@@ -20,7 +20,7 @@ d = LCTMC.simulate::simulate_LCTMC(
 
   initS_p = c(0.5, 0.5),
   death = NULL,
-  sojourn = 'gamma'
+  sojourn.shape = 0.5
 )
 
 # coerce to data.frame ~ S3 method for 'lctmc.sim' objects

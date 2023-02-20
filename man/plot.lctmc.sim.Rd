@@ -29,7 +29,7 @@ d = LCTMC.simulate::simulate_LCTMC(
   N.indiv = 5,
   N.obs_times = 5,
 
-  max.obs_times = 9,
+  max.obs_times = 10,
   fix.obs_times = FALSE,
 
   true_param = LCTMC.simulate::gen_true_param(K_class = 3, M_state = 2),
@@ -43,7 +43,7 @@ d = LCTMC.simulate::simulate_LCTMC(
 
   initS_p = c(0.5, 0.5),
   death = NULL,
-  sojourn = 'gamma'
+  sojourn.shape = 0.5
 )
 
 # plot ~ S3 method for 'lctmc.sim' objects

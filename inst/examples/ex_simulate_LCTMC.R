@@ -20,7 +20,7 @@ d = LCTMC.simulate::simulate_LCTMC(
 
    initS_p = c(0.5, 0.5),
    death = NULL,
-   sojourn = 'exp'
+   sojourn.shape = 1
 )
 
 # output is a list containing two elements:

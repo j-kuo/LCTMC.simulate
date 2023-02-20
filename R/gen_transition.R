@@ -7,8 +7,8 @@
 #' @param from_state the current state to transition out of
 #' @param Q transition rate matrix obtained from `gen_Qmat()`
 #' @param M_state number of CTMC states (currently only support 2 or 3 states)
-#' @param sojourn a character scalar to indicate the distribution of the sojourn times.
-#' Must take either "exp" or "gamma" at the moment. In the case of gamma, the 'shape' parameter is currently constrained.
+#' @param sojourn.shape a numeric scalar > 0. This is the shape parameter for the gamma distribution. \cr
+#' Set to 1 if exponential (i.e., CTMC) is desired.
 #'
 #' @return a list containing two elements
 #' \enumerate{
@@ -21,7 +21,7 @@
 #'
 #' @example inst/examples/ex_gen_transition.R
 
-gen_transition = function(from_state, Q, M_state, sojourn) {
+gen_transition = function(from_state, Q, M_state, sojourn.shape) {
   # set diagonal to 0 for convenience
   diag(Q) = 0
 
@@ -31,17 +31,8 @@ gen_transition = function(from_state, Q, M_state, sojourn) {
 
   # error catching, `r` here should always be greater than 0
   if (r > 0) {
-    # generate time to transition
-    if (sojourn == "exp") {
-      t = stats::rexp(n = 1, rate = r)
-    } else if (sojourn == "gamma") {
-      t = stats::rgamma(n = 1, shape = 0.5, rate = r)
-    } else {
-      stop("`sojourn` must be either 'exp' or 'gamma'")
-    }
-
-    # decide which state to jump to
-    to_state = sample(1:M_state, size = 1, replace = TRUE, prob = q / sum(q))
+    t = stats::rgamma(n = 1, shape = sojourn.shape, rate = r) # time to transition
+    to_state = sample(1:M_state, size = 1, replace = TRUE, prob = q / sum(q)) # which state to jump to
   } else {
     t = NA
     to_state = NA

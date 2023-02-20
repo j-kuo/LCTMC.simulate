@@ -4,7 +4,7 @@
 \alias{gen_transition}
 \title{Simulates a transition with exponentially distributed sojourn time}
 \usage{
-gen_transition(from_state, Q, M_state, sojourn)
+gen_transition(from_state, Q, M_state, sojourn.shape)
 }
 \arguments{
 \item{from_state}{the current state to transition out of}
@@ -13,8 +13,8 @@ gen_transition(from_state, Q, M_state, sojourn)
 
 \item{M_state}{number of CTMC states (currently only support 2 or 3 states)}
 
-\item{sojourn}{a character scalar to indicate the distribution of the sojourn times.
-Must take either "exp" or "gamma" at the moment. In the case of gamma, the 'shape' parameter is currently constrained.}
+\item{sojourn.shape}{a numeric scalar > 0. This is the shape parameter for the gamma distribution. \cr
+Set to 1 if exponential (i.e., CTMC) is desired.}
 }
 \value{
 a list containing two elements

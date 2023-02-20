@@ -15,7 +15,7 @@
 #' @param p2 See documentation for `simulate_LCTMC()`
 #' @param initS_p See documentation for `simulate_LCTMC()`
 #' @param death See documentation for `simulate_LCTMC()`
-#' @param sojourn See documentation for `simulate_LCTMC()`
+#' @param sojourn.shape See documentation for `simulate_LCTMC()`
 #'
 #' @return if checks passes without issue then function returns NULL
 #'
@@ -34,7 +34,7 @@ check_simulate_LCTMC = function(N.indiv = integer(),
                                 p2 = integer(),
                                 initS_p = c(),
                                 death = integer(),
-                                sojourn = character()) {
+                                sojourn.shape = numeric()) {
   ## checks `true_param` list object
   if (length(true_param) != 3 || !all(c('r0', 'beta', "pi") %in% names(true_param))) {
     stop("`true_param` should be a list object of 3 elements: 'r0' , 'beta' , 'pi'")
@@ -105,5 +105,10 @@ check_simulate_LCTMC = function(N.indiv = integer(),
     if (all(temp2)) {
       stop("when `death` is not NULL, `true_param$r0` for the `death` state should be all 0's")
     }
+  }
+
+  ## check shape parameter, must be > 0
+  if (sojourn.shape <= 0) {
+    stop("`sojourn.shape` must be strictly greater than 0")
   }
 }
