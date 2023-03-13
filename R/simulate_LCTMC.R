@@ -24,8 +24,12 @@
 #' For example, with `M = 3L` and `initS_p = c(1/2, 1/2, 0)`, then 50% of the individuals will start in state 1 of the CTMC process, and the other 50% will start in state 2.
 #' @param death if death is a possible state, then use this argument to specify it. \cr
 #' Death state is treated as an absorbing state. Observations will be truncated after death occurs. In addition, death occurrence is assumed to be known exactly. \cr
-#' @param sojourn.shape a numeric scalar > 0. This is the shape parameter for the gamma distribution. \cr
-#' Set to 1 if exponential (i.e., CTMC) is desired.
+#' @param sojourn a list containing `dist` as an element specifying the distribution.
+#' Other arguments for the specified distribution should also be included:
+#' \itemize{
+#'   \item if `dist` is "gamma" then, `gamma.shape`, a numeric scalar > 0 is also needed (shape = 1 is the exponential distribution).
+#'   \item if `dist` is "lnorm" then, `lnorm.sdlog`, a numeric scalar > 0 is also needed.
+#' }
 #'
 #' @return a custom class, 'lctmc.sim', list object containing two sub list objects.
 #' The first is, `sim_data`, the simulated data where each element is one person.
@@ -63,7 +67,7 @@ simulate_LCTMC = function(N.indiv = integer(),
                           p2 = integer(),
                           initS_p = c(),
                           death = integer(),
-                          sojourn.shape = numeric()) {
+                          sojourn = list()) {
   ### checks function specification
   check_f = match.call()
   check_f[[1]] = as.name("check_simulate_LCTMC")
@@ -159,7 +163,7 @@ simulate_LCTMC = function(N.indiv = integer(),
         from_state = state_at_transTime[length(state_at_transTime)],
         Q = temp_Q,
         M_state = M,
-        sojourn.shape = sojourn.shape
+        sojourn = sojourn
       )
       # append result to time & state vector
       transTime = c(transTime, transTime[length(transTime)] + temp$t)

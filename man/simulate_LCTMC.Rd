@@ -18,7 +18,7 @@ simulate_LCTMC(
   p2 = integer(),
   initS_p = c(),
   death = integer(),
-  sojourn.shape = numeric()
+  sojourn = list()
 )
 }
 \arguments{
@@ -56,8 +56,12 @@ For example, with \code{M = 3L} and \code{initS_p = c(1/2, 1/2, 0)}, then 50\% o
 \item{death}{if death is a possible state, then use this argument to specify it. \cr
 Death state is treated as an absorbing state. Observations will be truncated after death occurs. In addition, death occurrence is assumed to be known exactly. \cr}
 
-\item{sojourn.shape}{a numeric scalar > 0. This is the shape parameter for the gamma distribution. \cr
-Set to 1 if exponential (i.e., CTMC) is desired.}
+\item{sojourn}{a list containing \code{dist} as an element specifying the distribution.
+Other arguments for the specified distribution should also be included:
+\itemize{
+\item if \code{dist} is "gamma" then, \code{gamma.shape}, a numeric scalar > 0 is also needed (shape = 1 is the exponential distribution).
+\item if \code{dist} is "lnorm" then, \code{lnorm.sdlog}, a numeric scalar > 0 is also needed.
+}}
 }
 \value{
 a custom class, 'lctmc.sim', list object containing two sub list objects.
@@ -84,7 +88,7 @@ Once simulation is complete, use \code{as.data.frame()} to format the data into 
 }
 \examples{
 # set seed
-set.seed(123)
+# set.seed(123)
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
@@ -105,7 +109,7 @@ d = LCTMC.simulate::simulate_LCTMC(
 
    initS_p = c(0.5, 0.5),
    death = NULL,
-   sojourn.shape = 1
+   sojourn = list(dist = "gamma", gamma.shape = 1)
 )
 
 # output is a list containing two elements:
@@ -113,7 +117,7 @@ length(d)
 names(d)
 
 # `sim_data` is the simulated data, here we print the simulation for person #1
-d$sim_data[[1]]
+d$sim_data[[7]]
 }
 \seealso{
 \code{\link[=gen_Qmat]{gen_Qmat()}}, \code{\link[=gen_transition]{gen_transition()}}, \code{\link[=gen_true_param]{gen_true_param()}}, \code{\link[=force0_true_param]{force0_true_param()}}

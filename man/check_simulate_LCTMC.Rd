@@ -18,7 +18,7 @@ check_simulate_LCTMC(
   p2 = integer(),
   initS_p = c(),
   death = integer(),
-  sojourn.shape = numeric()
+  sojourn = list()
 )
 }
 \arguments{
@@ -48,7 +48,7 @@ check_simulate_LCTMC(
 
 \item{death}{See documentation for \code{simulate_LCTMC()}}
 
-\item{sojourn.shape}{See documentation for \code{simulate_LCTMC()}}
+\item{sojourn}{See documentation for \code{simulate_LCTMC()}}
 }
 \value{
 if checks passes without issue then function returns NULL

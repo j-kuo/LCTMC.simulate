@@ -2,26 +2,30 @@
 % Please edit documentation in R/gen_transition.R
 \name{gen_transition}
 \alias{gen_transition}
-\title{Simulates a transition with exponentially distributed sojourn time}
+\title{Simulates a transition with the specified sojourn time distribution}
 \usage{
-gen_transition(from_state, Q, M_state, sojourn.shape)
+gen_transition(from_state, Q, M_state, sojourn)
 }
 \arguments{
 \item{from_state}{the current state to transition out of}
 
 \item{Q}{transition rate matrix obtained from \code{gen_Qmat()}}
 
-\item{M_state}{number of CTMC states (currently only support 2 or 3 states)}
+\item{M_state}{number of states (currently only support 2 or 3 states)}
 
-\item{sojourn.shape}{a numeric scalar > 0. This is the shape parameter for the gamma distribution. \cr
-Set to 1 if exponential (i.e., CTMC) is desired.}
+\item{sojourn}{a list containing \code{dist} as an element specifying the distribution.
+Other arguments for the specified distribution should also be included:
+\itemize{
+\item if \code{dist} is "gamma" then, \code{gamma.shape}, a numeric scalar > 0 is also needed (shape = 1 is the exponential distribution).
+\item if \code{dist} is "lnorm" then, \code{lnorm.sdlog}, a numeric scalar > 0 is also needed.
+}}
 }
 \value{
 a list containing two elements
 \enumerate{
-\item \strong{t} a numeric scalar. The exponentially distributed sojourn time it took to transition out of \code{from_state}
-\item \strong{to_state} a numeric scalar. This is the state which the random process transitioned to
-\item if something went wrong then NA values are returned
+\item \strong{t} a numeric scalar. The sojourn time it took to transition out of \code{from_state}.
+\item \strong{to_state} a numeric scalar. This is the state which the random process transitioned to.
+\item if something went wrong then NA values are returned.
 }
 }
 \description{

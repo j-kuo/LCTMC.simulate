@@ -1,5 +1,5 @@
 # set seed
-set.seed(123)
+# set.seed(123)
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
@@ -20,7 +20,7 @@ d = LCTMC.simulate::simulate_LCTMC(
 
    initS_p = c(0.5, 0.5),
    death = NULL,
-   sojourn.shape = 1
+   sojourn = list(dist = "gamma", gamma.shape = 1)
 )
 
 # output is a list containing two elements:
@@ -28,4 +28,4 @@ length(d)
 names(d)
 
 # `sim_data` is the simulated data, here we print the simulation for person #1
-d$sim_data[[1]]
+d$sim_data[[7]]
