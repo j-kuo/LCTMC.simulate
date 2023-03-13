@@ -3,8 +3,8 @@ set.seed(456)
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
-  N.indiv = 5,
-  N.obs_times = 5,
+  N.indiv = 3,
+  N.obs_times = 3,
 
   max.obs_times = 10,
   fix.obs_times = FALSE,

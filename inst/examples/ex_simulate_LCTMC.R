@@ -3,8 +3,8 @@
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
-   N.indiv = 10,
-   N.obs_times = 10,
+   N.indiv = 3,
+   N.obs_times = 3,
 
    max.obs_times = 50,
    fix.obs_times = FALSE,
@@ -27,5 +27,5 @@ d = LCTMC.simulate::simulate_LCTMC(
 length(d)
 names(d)
 
-# `sim_data` is the simulated data, here we print the simulation for person #1
-d$sim_data[[7]]
+# `sim_data` is the simulated data, here we print the simulation for person number 2
+d$sim_data[[2]]

@@ -9,9 +9,9 @@ This R package provides an intuitive interface to simulate censored longitudinal
 
 ## Overview
 
-The continuous-time Markov models have been studied for nearly a decade as of 2023. It has found many use cases in epidemiological studies, clinical trials, and public health surveillance. It is a useful tool to study the dynamic of a multistate process. It can also be extended in several directions. For example, the [msm](https://cran.r-project.org/web/packages/msm/vignettes/msm-manual.pdf) package has implementations of continous-time hidden Markov models (HMM), or the distribution assumptions can be relaxed to encompass more complex processes (e.g., [semi-Markov models](https://www.sciencedirect.com/topics/computer-science/semi-markov-process)).
+The continuous-time Markov models have been studied for more than half of a century as of 2023. It has found many use cases in epidemiological studies, clinical trials, and public health surveillance. It is a useful tool to study the dynamic of a multistate process. It can also be extended in several directions. For example, the [msm](https://cran.r-project.org/web/packages/msm/vignettes/msm-manual.pdf) package has implementations of continous-time hidden Markov models (HMM), or the distribution assumptions can be relaxed to encompass more complex processes (e.g., [semi-Markov models](https://www.sciencedirect.com/topics/computer-science/semi-markov-process)).
 
-In our work, we extended the continuous-time Markov chain (CTMC) model by assuming individuals belong to one of $K$ latent clusters/classes where each cluster is characterized by the differences in the dynamic of the multistate process (i.e., the rate or _speed_ of transitions).
+This package allows for data simulation from our extension of the CTMC model, **[latent class CTMC](https://github.com/j-kuo/LCTMC)**. In our study, we assumed individuals belong to one of $K$ mutually exclusive unobservable clusters, where each cluster is characterized by their differences in the disease dynamic (i.e., progressive, regressive, or mixture of both). 
 
 ## Installation
 

@@ -92,8 +92,8 @@ Once simulation is complete, use \code{as.data.frame()} to format the data into 
 
 # simulate
 d = LCTMC.simulate::simulate_LCTMC(
-   N.indiv = 10,
-   N.obs_times = 10,
+   N.indiv = 3,
+   N.obs_times = 3,
 
    max.obs_times = 50,
    fix.obs_times = FALSE,
@@ -116,8 +116,8 @@ d = LCTMC.simulate::simulate_LCTMC(
 length(d)
 names(d)
 
-# `sim_data` is the simulated data, here we print the simulation for person #1
-d$sim_data[[7]]
+# `sim_data` is the simulated data, here we print the simulation for person number 2
+d$sim_data[[2]]
 }
 \seealso{
 \code{\link[=gen_Qmat]{gen_Qmat()}}, \code{\link[=gen_transition]{gen_transition()}}, \code{\link[=gen_true_param]{gen_true_param()}}, \code{\link[=force0_true_param]{force0_true_param()}}
